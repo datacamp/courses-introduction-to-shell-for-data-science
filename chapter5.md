@@ -1,15 +1,15 @@
 ---
-title: Creating new tools
+title: Crear nuevas herramientas
 description: >-
-  History lets you repeat things with just a few keystrokes, and pipes let you
-  combine existing commands to create new ones. In this chapter, you will see
-  how to go one step further and create new commands of your own.
+  El historial te permite repetir cosas con sólo pulsar unas teclas, y las
+  tuberías te permiten combinar comandos existentes para crear otros nuevos. En
+  este capítulo, verás cómo ir un paso más allá y crear nuevos comandos propios.
 lessons:
   - nb_of_exercises: 9
-    title: How can I edit a file?
+    title: ¿Cómo puedo editar un archivo?
 ---
 
-## How can I edit a file?
+## ¿Cómo puedo editar un archivo?
 
 ```yaml
 type: ConsoleExercise
@@ -17,24 +17,24 @@ key: 39eee3cfc0
 xp: 100
 ```
 
-Unix has a bewildering variety of text editors.
-For this course,
-we will use a simple one called Nano.
-If you type `nano filename`,
-it will open `filename` for editing
-(or create it if it doesn't already exist).
-You can move around with the arrow keys,
-delete characters using backspace,
-and do other operations with control-key combinations:
+Unix tiene una desconcertante variedad de editores de texto.
+Para este curso,
+utilizaremos uno sencillo llamado Nano.
+Si escribes `nano filename`,
+se abrirá `filename` para editar
+(o créala si aún no existe).
+Puedes moverte con las teclas de flecha,
+Borrar caracteres utilizando la tecla de retroceso,
+y realizar otras operaciones con combinaciones de teclas de control:
 
-- `Ctrl` + `K`: delete a line.
-- `Ctrl` + `U`: un-delete a line.
-- `Ctrl` + `O`: save the file ('O' stands for 'output'). _You will also need to press Enter to confirm the filename!_
-- `Ctrl` + `X`: exit the editor.
+- `Ctrl` + `K`: borra una línea.
+- `Ctrl` + `U`: borra una línea.
+- `Ctrl` + `O`: guarda el archivo ("O" significa "salida"). También tendrás que pulsar Intro para confirmar el nombre del archivo.
+- `Ctrl` + `X`: salir del editor.
 
 `@instructions`
-Run `nano names.txt` to edit a new file in your home directory
-and enter the following four lines:
+Ejecuta `nano names.txt` para editar un nuevo archivo en tu directorio personal
+e introduce las cuatro líneas siguientes:
 
 ```
 Lovelace
@@ -43,10 +43,10 @@ Johnson
 Wilson
 ```
 
-To save what you have written,
-type `Ctrl` + `O` to write the file out,
-then Enter to confirm the filename,
-then `Ctrl` + `X` to exit the editor.
+Para guardar lo que has escrito,
+teclea `Ctrl` + `O` para escribir el archivo,
+y luego Intro para confirmar el nombre del archivo,
+y luego `Ctrl` + `X` para salir del editor.
 
 `@hint`
 
@@ -80,7 +80,7 @@ Ex().success_msg("Well done! Off to the next one!")
 
 ---
 
-## How can I record what I just did?
+## ¿Cómo puedo grabar lo que acabo de hacer?
 
 ```yaml
 type: BulletConsoleExercise
@@ -88,20 +88,20 @@ key: 80c3532985
 xp: 100
 ```
 
-When you are doing a complex analysis,
-you will often want to keep a record of the commands you used.
-You can do this with the tools you have already seen:
+Cuando realices un análisis complejo,
+a menudo querrás llevar un registro de los comandos que has utilizado.
+Puedes hacerlo con las herramientas que ya has visto:
 
-1. Run `history`.
-2. Pipe its output to `tail -n 10` (or however many recent steps you want to save).
-3. Redirect that to a file called something like `figure-5.history`.
+1. Ejecuta `history`.
+2. Canaliza su salida a `tail -n 10` (o al número de pasos recientes que quieras guardar).
+3. Redirige eso a un archivo llamado algo así como `figure-5.history`.
 
-This is better than writing things down in a lab notebook
-because it is guaranteed not to miss any steps.
-It also illustrates the central idea of the shell:
-simple tools that produce and consume lines of text
-can be combined in a wide variety of ways
-to solve a broad range of problems.
+Esto es mejor que apuntar las cosas en un cuaderno de laboratorio
+porque está garantizado que no se saltará ningún paso.
+También ilustra la idea central del caparazón:
+herramientas sencillas que producen y consumen líneas de texto
+pueden combinarse de muchas maneras
+para resolver una amplia gama de problemas.
 
 `@pre_exercise_code`
 ```{python}
@@ -117,10 +117,10 @@ xp: 35
 ```
 
 `@instructions`
-Copy the files `seasonal/spring.csv` and `seasonal/summer.csv` to your home directory.
+Copia los archivos `seasonal/spring.csv` y `seasonal/summer.csv` en tu directorio personal.
 
 `@hint`
-Use `cp` to copy and `~` as a shortcut for the path to your home directory.
+Utiliza `cp` para copiar y `~` como acceso directo para la ruta a tu directorio personal.
 
 `@solution`
 ```{shell}
@@ -151,13 +151,13 @@ xp: 35
 ```
 
 `@instructions`
-Use `grep` with the `-h` flag (to stop it from printing filenames)
-and `-v Tooth` (to select lines that *don't* match the header line)
-to select the data records from `spring.csv` and `summer.csv` in that order
-and redirect the output to `temp.csv`.
+Utiliza `grep` con la bandera `-h` (para que no imprima los nombres de los archivos).
+y `-v Tooth` (para seleccionar las líneas que *no* coinciden con la línea de cabecera)
+para seleccionar los registros de datos de `spring.csv` y `summer.csv` en ese orden
+y redirige la salida a `temp.csv`.
 
 `@hint`
-Put the flags before the filenames.
+Coloca las banderas antes de los nombres de archivo.
 
 `@solution`
 ```{shell}
@@ -189,14 +189,14 @@ xp: 30
 ```
 
 `@instructions`
-Pipe `history` into `tail -n 3`
-and redirect the output to `steps.txt`
-to save the last three commands in a file.
-(You need to save three instead of just two
-because the `history` command itself will be in the list.)
+Introduce `history` en `tail -n 3`
+y redirige la salida a `steps.txt`
+para guardar los tres últimos comandos en un archivo.
+(Tienes que guardar tres en lugar de sólo dos
+porque el propio comando `history` estará en la lista).
 
 `@hint`
-Remember that redirection with `>` comes at the end of the sequence of piped commands.
+Recuerda que la redirección con `>` se produce al final de la secuencia de comandos canalizados.
 
 `@solution`
 ```{shell}
@@ -225,7 +225,7 @@ Ex().success_msg("Well done! Let's step it up!")
 
 ---
 
-## How can I save commands to re-run later?
+## ¿Cómo puedo guardar comandos para volver a ejecutarlos más tarde?
 
 ```yaml
 type: BulletConsoleExercise
@@ -233,27 +233,27 @@ key: 4507a0dbd8
 xp: 100
 ```
 
-You have been using the shell interactively so far.
-But since the commands you type in are just text,
-you can store them in files for the shell to run over and over again.
-To start exploring this powerful capability,
-put the following command in a file called `headers.sh`:
+Hasta ahora has utilizado el intérprete de comandos de forma interactiva.
+Pero como los comandos que tecleas son sólo texto,
+puedes almacenarlos en archivos para que el shell los ejecute una y otra vez.
+Para empezar a explorar esta potente capacidad,
+pon el siguiente comando en un archivo llamado `headers.sh`:
 
 ```{shell}
 head -n 1 seasonal/*.csv
 ```
 
-This command selects the first row from each of the CSV files in the `seasonal` directory.
-Once you have created this file,
-you can run it by typing:
+Este comando selecciona la primera fila de cada uno de los archivos CSV del directorio `seasonal`.
+Una vez que hayas creado este archivo,
+puedes ejecutarlo escribiendo
 
 ```{shell}
 bash headers.sh
 ```
 
-This tells the shell (which is just a program called `bash`)
-to run the commands contained in the file `headers.sh`,
-which produces the same output as running the commands directly.
+Esto le dice al shell (que no es más que un programa llamado `bash`)
+para ejecutar los comandos contenidos en el archivo `headers.sh`,
+que produce el mismo resultado que ejecutar los comandos directamente.
 
 `@pre_exercise_code`
 ```{python}
@@ -269,17 +269,17 @@ xp: 50
 ```
 
 `@instructions`
-Use `nano dates.sh` to create a file called `dates.sh`
-that contains this command:
+Utiliza `nano dates.sh` para crear un archivo llamado `dates.sh`
+que contiene este comando:
 
 ```{shell}
 cut -d , -f 1 seasonal/*.csv
 ```
 
-to extract the first column from all of the CSV files in `seasonal`.
+para extraer la primera columna de todos los archivos CSV en `seasonal`.
 
 `@hint`
-Put the commands shown into the file without extra blank lines or spaces.
+Introduce los comandos que se muestran en el archivo sin líneas en blanco ni espacios adicionales.
 
 `@solution`
 ```{shell}
@@ -309,10 +309,10 @@ xp: 50
 ```
 
 `@instructions`
-Use `bash` to run the file `dates.sh`.
+Utiliza `bash` para ejecutar el archivo `dates.sh`.
 
 `@hint`
-Use `bash filename` to run the file.
+Utiliza `bash filename` para ejecutar el archivo.
 
 `@solution`
 ```{shell}
@@ -337,7 +337,7 @@ Ex().multi(
 
 ---
 
-## How can I re-use pipes?
+## ¿Cómo puedo reutilizar las tuberías?
 
 ```yaml
 type: BulletConsoleExercise
@@ -345,27 +345,27 @@ key: da13667750
 xp: 100
 ```
 
-A file full of shell commands is called a ***shell script**,
-or sometimes just a "script" for short. Scripts don't have to have names ending in `.sh`,
-but this lesson will use that convention
-to help you keep track of which files are scripts.
+Un archivo lleno de comandos de shell se llama ***script de shell**,
+o a veces sólo un "guión" para abreviar. Los guiones no tienen por qué tener nombres acabados en `.sh`,
+pero esta lección utilizará esa convención
+para ayudarte a seguir la pista de qué archivos son scripts.
 
-Scripts can also contain pipes.
-For example,
-if `all-dates.sh` contains this line:
+Los guiones también pueden contener tuberías.
+Por ejemplo,
+si `all-dates.sh` contiene esta línea:
 
 ```{shell}
 cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq
 ```
 
-then:
+entonces:
 
 ```{shell}
 bash all-dates.sh > dates.out
 ```
 
-will extract the unique dates from the seasonal data files
-and save them in `dates.out`.
+extraerá las fechas únicas de los archivos de datos estacionales
+y guárdalos en `dates.out`.
 
 `@pre_exercise_code`
 ```{python}
@@ -382,13 +382,13 @@ xp: 35
 ```
 
 `@instructions`
-A file `teeth.sh` in your home directory has been prepared for you, but contains some blanks.
-Use Nano to edit the file and replace the two `____` placeholders
-with `seasonal/*.csv` and `-c` so that this script prints a count of the
-number of times each tooth name appears in the CSV files in the `seasonal` directory.
+Se ha preparado para ti un archivo `teeth.sh` en tu directorio personal, pero contiene algunos espacios en blanco.
+Utiliza Nano para editar el archivo y sustituir los dos marcadores de posición `____` 
+con `seasonal/*.csv` y `-c` para que este script imprima un recuento de los
+número de veces que aparece el nombre de cada diente en los archivos CSV del directorio `seasonal`.
 
 `@hint`
-Use `nano teeth.sh` to edit the file.
+Utiliza `nano teeth.sh` para editar el archivo.
 
 `@solution`
 ```{shell}
@@ -418,10 +418,10 @@ xp: 35
 ```
 
 `@instructions`
-Use `bash` to run `teeth.sh` and `>` to redirect its output to `teeth.out`.
+Utiliza `bash` para ejecutar `teeth.sh` y `>` para redirigir su salida a `teeth.out`.
 
 `@hint`
-Remember that `> teeth.out` must come *after* the command that is producing output.
+Recuerda que `> teeth.out` debe ir *después* del comando que produce la salida.
 
 `@solution`
 ```{shell}
@@ -461,10 +461,10 @@ xp: 30
 ```
 
 `@instructions`
-Run `cat teeth.out` to inspect your results.
+Ejecuta `cat teeth.out` para inspeccionar tus resultados.
 
 `@hint`
-Remember, you can type the first few characters of a filename and then press the tab key to auto-complete.
+Recuerda que puedes escribir los primeros caracteres de un nombre de archivo y luego pulsar el tabulador para autocompletar.
 
 `@solution`
 ```{shell}
@@ -490,7 +490,7 @@ Ex().success_msg("Nice! This all may feel contrived at first, but the nice thing
 
 ---
 
-## How can I pass filenames to scripts?
+## ¿Cómo puedo pasar nombres de archivos a los guiones?
 
 ```yaml
 type: BulletConsoleExercise
@@ -498,26 +498,26 @@ key: c2623b9c14
 xp: 100
 ```
 
-A script that processes specific files is useful as a record of what you did, but one that allows you to process any files you want is more useful.
-To support this,
-you can use the special expression `$@` (dollar sign immediately followed by at-sign)
-to mean "all of the command-line parameters given to the script".
+Un script que procese archivos concretos es útil como registro de lo que hiciste, pero uno que te permita procesar los archivos que quieras es más útil.
+Para apoyar esto,
+puedes utilizar la expresión especial `$@` (signo de dólar seguido inmediatamente del signo arroba)
+para significar "todos los parámetros de la línea de comandos dados al script".
 
-For example, if `unique-lines.sh` contains `sort $@ | uniq`, when you run:
+Por ejemplo, si `unique-lines.sh` contiene `sort $@ | uniq`, cuando ejecutes:
 
 ```{shell}
 bash unique-lines.sh seasonal/summer.csv
 ```
 
-the shell replaces `$@` with `seasonal/summer.csv` and processes one file. If you run this:
+el intérprete de comandos sustituye `$@` por `seasonal/summer.csv` y procesa un archivo. Si ejecutas esto
 
 ```{shell}
 bash unique-lines.sh seasonal/summer.csv seasonal/autumn.csv
 ```
 
-it processes two data files, and so on.
+procesa dos archivos de datos, y así sucesivamente.
 
-_As a reminder, to save what you have written in Nano, type `Ctrl` + `O` to write the file out, then Enter to confirm the filename, then `Ctrl` + `X` to exit the editor._
+Como recordatorio, para guardar lo que has escrito en Nano, escribe `Ctrl` + `O` para escribir el archivo, luego Intro para confirmar el nombre del archivo, y luego `Ctrl` + `X` para salir del editor._
 
 `@pre_exercise_code`
 ```{python}
@@ -534,13 +534,13 @@ xp: 50
 ```
 
 `@instructions`
-Edit the script `count-records.sh` with Nano and fill in the two `____` placeholders
-with `$@` and `-l` (_the letter_) respectively so that it counts the number of lines in one or more files,
-excluding the first line of each.
+Edita el script `count-records.sh` con Nano y rellena los dos marcadores de posición `____` 
+con `$@` y `-l` (_la letra_) respectivamente para que cuente el número de líneas de uno o varios archivos,
+excluyendo la primera línea de cada uno.
 
 `@hint`
-* Use `nano count-records.sh` to edit the filename.
-* Make sure you are specifying the _letter_ `-l`, and not the number one.
+* Utiliza `nano count-records.sh` para editar el nombre del archivo.
+* Asegúrate de que estás especificando la _letra_ `-l`, y no el número uno.
 
 `@solution`
 ```{shell}
@@ -570,11 +570,11 @@ xp: 50
 ```
 
 `@instructions`
-Run `count-records.sh` on `seasonal/*.csv`
-and redirect the output to `num-records.out` using `>`.
+Ejecuta `count-records.sh` en `seasonal/*.csv`
+y redirige la salida a `num-records.out` utilizando `>`.
 
 `@hint`
-Use `>` to redirect the output.
+Utiliza `>` para redirigir la salida.
 
 `@solution`
 ```{shell}
@@ -602,7 +602,7 @@ Ex().success_msg("A job well done! Your shell power is ever-expanding!")
 
 ---
 
-## How can I process a single argument?
+## ¿Cómo puedo procesar un único argumento?
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -610,42 +610,42 @@ key: 4092cb4cda
 xp: 50
 ```
 
-As well as `$@`,
-the shell lets you use `$1`, `$2`, and so on to refer to specific command-line parameters.
-You can use this to write commands that feel simpler or more natural than the shell's.
-For example,
-you can create a script called `column.sh` that selects a single column from a CSV file
-when the user provides the filename as the first parameter and the column as the second:
+Así como `$@`,
+el shell te permite utilizar `$1`, `$2`, etc. para referirte a parámetros específicos de la línea de comandos.
+Puedes utilizarlo para escribir comandos que parezcan más sencillos o naturales que los del shell.
+Por ejemplo,
+puedes crear un script llamado `column.sh` que seleccione una sola columna de un archivo CSV
+cuando el usuario proporciona el nombre del archivo como primer parámetro y la columna como segundo:
 
 ```{shell}
 cut -d , -f $2 $1
 ```
 
-and then run it using:
+y luego ejecútalo utilizando:
 
 ```{shell}
 bash column.sh seasonal/autumn.csv 1
 ```
 
-Notice how the script uses the two parameters in reverse order.
+Observa cómo el script utiliza los dos parámetros en orden inverso.
 
 <hr>
 
-The script `get-field.sh` is supposed to take a filename,
-the number of the row to select,
-the number of the column to select,
-and print just that field from a CSV file.
-For example:
+El script `get-field.sh` debe tomar un nombre de archivo,
+el número de la fila a seleccionar,
+el número de la columna a seleccionar,
+e imprimir sólo ese campo desde un archivo CSV.
+Por ejemplo:
 
 ```
 bash get-field.sh seasonal/summer.csv 4 2
 ```
 
-should select the second field from line 4 of `seasonal/summer.csv`.
-Which of the following commands should be put in `get-field.sh` to do that?
+debe seleccionar el segundo campo de la línea 4 de `seasonal/summer.csv`.
+¿Cuál de los siguientes comandos hay que poner en `get-field.sh` para hacerlo?
 
 `@hint`
-Remember that command-line parameters are numbered left to right.
+Recuerda que los parámetros de la línea de comandos se numeran de izquierda a derecha.
 
 `@possible_answers`
 - `head -n $1 $2 | tail -n 1 | cut -d , -f $3`
@@ -654,14 +654,14 @@ Remember that command-line parameters are numbered left to right.
 - `head -n $2 $3 | tail -n 1 | cut -d , -f $1`
 
 `@feedback`
-- No: that will try to use the filename as the number of lines to select with `head`.
-- Correct!
-- No: that will try to use the column number as the line number and vice versa.
-- No: that will use the field number as the filename and vice versa.
+- No: que intentará utilizar el nombre del archivo como número de líneas a seleccionar con `head`.
+- Correcto.
+- No: eso intentará utilizar el número de columna como número de línea y viceversa.
+- No: eso utilizará el número de campo como nombre de archivo y viceversa.
 
 ---
 
-## How can one shell script do many things?
+## ¿Cómo puede un script de shell hacer muchas cosas?
 
 ```yaml
 type: TabConsoleExercise
@@ -669,11 +669,11 @@ key: 846bc70e9d
 xp: 100
 ```
 
-Our shells scripts so far have had a single command or pipe, but a script can contain many lines of commands. For example, you can create one that tells you how many records are in the shortest and longest of your data files, i.e., the range of your datasets' lengths.
+Hasta ahora, nuestros guiones de shell han tenido un único comando o tubería, pero un guión puede contener muchas líneas de comandos. Por ejemplo, puedes crear uno que te diga cuántos registros hay en el más corto y en el más largo de tus archivos de datos, es decir, el rango de longitudes de tus conjuntos de datos.
 
-Note that in Nano, "copy and paste" is achieved by navigating to the line you want to copy, pressing `CTRL` + `K` to cut the line, then `CTRL` + `U` twice to paste two copies of it.
+Ten en cuenta que en Nano, "copiar y pegar" se consigue navegando hasta la línea que quieres copiar, pulsando `CTRL` + `K` para cortar la línea, y luego `CTRL` + `U` dos veces para pegar dos copias de la misma.
 
-_As a reminder, to save what you have written in Nano, type `Ctrl` + `O` to write the file out, then Enter to confirm the filename, then `Ctrl` + `X` to exit the editor._
+Como recordatorio, para guardar lo que has escrito en Nano, escribe `Ctrl` + `O` para escribir el archivo, luego Intro para confirmar el nombre del archivo, y luego `Ctrl` + `X` para salir del editor._
 
 `@pre_exercise_code`
 ```{python}
@@ -690,15 +690,15 @@ xp: 25
 ```
 
 `@instructions`
-Use Nano to edit the script `range.sh`
-and replace the two `____` placeholders
-with `$@` and `-v`
-so that it lists the names and number of lines in all of the files given on the command line
-*without* showing the total number of lines in all files.
-(Do not try to subtract the column header lines from the files.)
+Utiliza Nano para editar el script `range.sh`
+y sustituye los dos marcadores de posición `____` 
+con `$@` y `-v`
+para que enumere los nombres y el número de líneas de todos los archivos indicados en la línea de comandos
+*sin* mostrar el número total de líneas de todos los archivos.
+(No intentes sustraer las líneas de encabezado de columna de los archivos).
 
 `@hint`
-Use `wc -l $@` to count lines in all the files given on the command line.
+Utiliza `wc -l $@` para contar las líneas de todos los archivos indicados en la línea de órdenes.
 
 `@solution`
 ```{shell}
@@ -728,9 +728,9 @@ xp: 25
 ```
 
 `@instructions`
-Use Nano again to add `sort -n` and `head -n 1` in that order
-to the pipeline in `range.sh`
-to display the name and line count of the shortest file given to it.
+Vuelve a utilizar Nano para añadir `sort -n` y `head -n 1` en este orden
+a la tubería en `range.sh`
+para mostrar el nombre y el recuento de líneas del archivo más corto que se le haya dado.
 
 `@hint`
 
@@ -763,13 +763,13 @@ xp: 25
 ```
 
 `@instructions`
-Again using Nano, add a second line to `range.sh` to print the name and record count of
-the *longest* file in the directory *as well as* the shortest.
-This line should be a duplicate of the one you have already written,
-but with `sort -n -r` rather than `sort -n`.
+De nuevo utilizando Nano, añade una segunda línea a `range.sh` para imprimir el nombre y el recuento de registros de
+el archivo *más largo* del directorio *así como* el más corto.
+Esta línea debe ser un duplicado de la que ya has escrito,
+pero con `sort -n -r` en lugar de `sort -n`.
 
 `@hint`
-Copy the first line and modify the sorting order.
+Copia la primera línea y modifica el orden de clasificación.
 
 `@solution`
 ```{shell}
@@ -802,13 +802,13 @@ xp: 25
 ```
 
 `@instructions`
-Run the script on the files in the `seasonal` directory
-using `seasonal/*.csv` to match all of the files
-and redirect the output using `>`
-to a file called `range.out` in your home directory.
+Ejecuta el script en los archivos del directorio `seasonal` 
+utilizando `seasonal/*.csv` para hacer coincidir todos los archivos
+y redirige la salida utilizando `>`
+a un archivo llamado `range.out` en tu directorio personal.
 
 `@hint`
-Use `bash range.sh` to run your script, `seasonal/*.csv` to specify files, and `> range.out` to redirect the output.
+Utiliza `bash range.sh` para ejecutar tu script, `seasonal/*.csv` para especificar archivos y `> range.out` para redirigir la salida.
 
 `@solution`
 ```{shell}
@@ -835,7 +835,7 @@ Ex().success_msg("This is going well. Head over to the next exercise to learn ab
 
 ---
 
-## How can I write loops in a shell script?
+## ¿Cómo puedo escribir bucles en un script de shell?
 
 ```yaml
 type: BulletConsoleExercise
@@ -843,7 +843,7 @@ key: 6be8ca6009
 xp: 100
 ```
 
-Shell scripts can also contain loops. You can write them using semi-colons, or split them across lines without semi-colons to make them more readable:
+Los guiones shell también pueden contener bucles. Puedes escribirlos utilizando puntos y comas, o dividirlos en líneas sin puntos y comas para hacerlos más legibles:
 
 ```{shell}
 # Print the first and last data records of each file.
@@ -854,11 +854,11 @@ do
 done
 ```
 
-(You don't have to indent the commands inside the loop, but doing so makes things clearer.)
+(No tienes que sangrar los comandos dentro del bucle, pero hacerlo hace las cosas más claras).
 
-The first line of this script is a **comment** to tell readers what the script does. Comments start with the `#` character and run to the end of the line. Your future self will thank you for adding brief explanations like the one shown here to every script you write.
+La primera línea de este script es un **comentario** para indicar a los lectores lo que hace el script. Los comentarios empiezan con el carácter `#` y van hasta el final de la línea. Tu yo del futuro te agradecerá que añadas breves explicaciones como la que se muestra aquí a cada guión que escribas.
 
-_As a reminder, to save what you have written in Nano, type `Ctrl` + `O` to write the file out, then Enter to confirm the filename, then `Ctrl` + `X` to exit the editor._
+Como recordatorio, para guardar lo que has escrito en Nano, escribe `Ctrl` + `O` para escribir el archivo, luego Intro para confirmar el nombre del archivo, y luego `Ctrl` + `X` para salir del editor._
 
 `@pre_exercise_code`
 ```{python}
@@ -875,12 +875,12 @@ xp: 35
 ```
 
 `@instructions`
-Fill in the placeholders in the script `date-range.sh`
-with `$filename` (twice), `head`, and `tail`
-so that it prints the first and last date from one or more files.
+Rellena los marcadores de posición en el script `date-range.sh`
+con `$filename` (dos veces), `head`, y `tail`
+para que imprima la primera y la última fecha de uno o varios archivos.
 
 `@hint`
-Remember to use `$filename` to get the current value of the loop variable.
+Recuerda utilizar `$filename` para obtener el valor actual de la variable del bucle.
 
 `@solution`
 ```{shell}
@@ -918,11 +918,11 @@ xp: 35
 ```
 
 `@instructions`
-Run `date-range.sh` on all four of the seasonal data files
-using `seasonal/*.csv` to match their names.
+Ejecuta `date-range.sh` en los cuatro archivos de datos estacionales
+utilizando `seasonal/*.csv` para hacer coincidir sus nombres.
 
 `@hint`
-The wildcard expression should start with the directory name.
+La expresión comodín debe empezar por el nombre del directorio.
 
 `@solution`
 ```{shell}
@@ -955,11 +955,11 @@ xp: 30
 ```
 
 `@instructions`
-Run `date-range.sh` on all four of the seasonal data files using `seasonal/*.csv` to match their names,
-and pipe its output to `sort` to see that your scripts can be used just like Unix's built-in commands.
+Ejecuta `date-range.sh` en los cuatro archivos de datos estacionales utilizando `seasonal/*.csv` para que coincidan sus nombres,
+y canaliza su salida a `sort` para comprobar que tus guiones se pueden utilizar igual que los comandos integrados de Unix.
 
 `@hint`
-Use the same wildcard expression you used earlier.
+Utiliza la misma expresión comodín que utilizaste antes.
 
 `@solution`
 ```{shell}
@@ -988,7 +988,7 @@ Ex().success_msg("Magic! Notice how composable all the things we've learned are.
 
 ---
 
-## What happens when I don't provide filenames?
+## ¿Qué ocurre si no proporciono los nombres de los archivos?
 
 ```yaml
 type: MultipleChoiceExercise
@@ -996,42 +996,42 @@ key: 8a162c4d54
 xp: 50
 ```
 
-A common mistake in shell scripts (and interactive commands) is to put filenames in the wrong place.
-If you type:
+Un error común en los scripts del shell (y en los comandos interactivos) es poner los nombres de los archivos en el lugar equivocado.
+Si tecleas
 
 ```{shell}
 tail -n 3
 ```
 
-then since `tail` hasn't been given any filenames,
-it waits to read input from your keyboard.
-This means that if you type:
+entonces, como `tail` no ha recibido ningún nombre de archivo,
+espera a leer la entrada de tu teclado.
+Esto significa que si escribes
 
 ```{shell}
 head -n 5 | tail -n 3 somefile.txt
 ```
 
-then `tail` goes ahead and prints the last three lines of `somefile.txt`,
-but `head` waits forever for keyboard input,
-since it wasn't given a filename and there isn't anything ahead of it in the pipeline.
+entonces `tail` sigue adelante e imprime las tres últimas líneas de `somefile.txt`,
+pero `head` espera eternamente la entrada del teclado,
+ya que no se le ha dado un nombre de archivo y no hay nada por delante de él en la cadena de producción.
 
 <hr>
 
-Suppose you do accidentally type:
+Supón que escribes accidentalmente
 
 ```{shell}
 head -n 5 | tail -n 3 somefile.txt
 ```
 
-What should you do next?
+¿Qué debes hacer ahora?
 
 `@possible_answers`
-- Wait 10 seconds for `head` to time out.
-- Type `somefile.txt` and press Enter to give `head` some input.
-- Use `Ctrl` + `C` to stop the running `head` program.
+- Espera 10 segundos a que se agote el tiempo de espera de `head`.
+- Escribe `somefile.txt` y pulsa Intro para dar entrada a `head`.
+- Utiliza `Ctrl` + `C` para detener la ejecución del programa `head`.
 
 `@hint`
-What does `head` do if it doesn't have a filename and nothing is upstream from it?
+¿Qué hace `head` si no tiene un nombre de archivo y no hay nada río arriba de él?
 
 `@pre_exercise_code`
 ```{python}
