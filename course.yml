@@ -1,10 +1,11 @@
-title: Introduction to Shell
+title: Introdução ao Shell
 description: >-
-  The Unix command line has survived and thrived for almost 50 years because it
-  lets people do complex things with just a few keystrokes. Sometimes called
-  "the universal glue of programming," it helps users combine existing programs
-  in new ways, automate repetitive tasks, and run programs on clusters and
-  clouds that may be halfway around the world. This course will introduce its
-  key elements and show you how to use them efficiently.
+  A linha de comando Unix sobreviveu e prosperou por quase 50 anos porque
+  permite que as pessoas façam coisas complexas com apenas alguns toques no
+  teclado. Às vezes chamado de "a cola universal da programação", ele ajuda os
+  usuários a combinar programas existentes de novas maneiras, automatizar
+  tarefas repetitivas e executar programas em clusters e nuvens que podem estar
+  do outro lado do mundo. Este curso apresentará seus principais elementos e
+  mostrará a você como usá-los de forma eficiente.
 programming_language: shell
-from: 'shell-base-prod:v1.1.3'
+from: shell-base-prod:v1.1.3
