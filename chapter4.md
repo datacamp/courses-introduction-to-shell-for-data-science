@@ -1,15 +1,16 @@
 ---
-title: Batch processing
+title: Traitement par lots
 description: >-
-  Most shell commands will process many files at once. This chapter shows you
-  how to make your own pipelines do that. Along the way, you will see how the
-  shell uses variables to store information.
+  La plupart des commandes du shell traitent plusieurs fichiers à la fois. Ce
+  chapitre vous montre comment créer vos propres pipelines. En cours de route,
+  vous verrez comment le shell utilise des variables pour stocker des
+  informations.
 lessons:
   - nb_of_exercises: 10
-    title: How does the shell store information?
+    title: Comment le shell stocke-t-il les informations ?
 ---
 
-## How does the shell store information?
+## Comment le shell stocke-t-il les informations ?
 
 ```yaml
 type: MultipleChoiceExercise
@@ -17,37 +18,37 @@ key: e4d5f4adea
 xp: 50
 ```
 
-Like other programs, the shell stores information in variables.
-Some of these,
-called **environment variables**,
-are available all the time.
-Environment variables' names are conventionally written in upper case,
-and a few of the more commonly-used ones are shown below.
+Comme les autres programmes, le shell stocke des informations dans des variables.
+Certains d'entre eux,
+appelées **variables d'environnement**,
+sont disponibles en permanence.
+Les noms des variables d'environnement sont traditionnellement écrits en majuscules,
+et quelques-unes des plus courantes sont présentées ci-dessous.
 
-| Variable | Purpose                           | Value                 |
+| Variable | Objectif                           | Valeur                 |
 |----------|-----------------------------------|-----------------------|
-| `HOME`   | User's home directory             | `/home/repl`          |
-| `PWD `   | Present working directory         | Same as `pwd` command |
-| `SHELL`  | Which shell program is being used | `/bin/bash`           |
-| `USER`   | User's ID                         | `repl`                |
+| `HOME`   | Répertoire personnel de l'utilisateur             | `/home/repl`          |
+| `PWD `   | Répertoire de travail actuel         | Identique à la commande `pwd`  |
+| `SHELL`  | Quel est le programme shell utilisé ? | `/bin/bash`           |
+| `USER`   | Utilisateur ID                         | `repl`                |
 
-To get a complete list (which is quite long),
-you can type `set` in the shell.
+Pour obtenir une liste complète (qui est assez longue),
+vous pouvez taper `set` dans le shell.
 
 <hr>
 
-Use `set` and `grep` with a pipe to display the value of `HISTFILESIZE`,
-which determines how many old commands are stored in your command history.
-What is its value?
+Utilisez `set` et `grep` avec un tuyau pour afficher la valeur de `HISTFILESIZE`,
+qui détermine le nombre d'anciennes commandes stockées dans votre historique de commandes.
+Quelle est sa valeur ?
 
 `@possible_answers`
 - 10
 - 500
 - [2000]
-- The variable is not there.
+- La variable n'existe pas.
 
 `@hint`
-Use `set | grep HISTFILESIZE` to get the line you need.
+Utilisez `set | grep HISTFILESIZE` pour obtenir la ligne dont vous avez besoin.
 
 `@pre_exercise_code`
 ```{python}
@@ -56,16 +57,16 @@ Use `set | grep HISTFILESIZE` to get the line you need.
 
 `@sct`
 ```{python}
-err1 = "No: the shell records more history than that."
-err2 = "No: the shell records more history than that."
-correct3 = "Correct: the shell saves 2000 old commands by default on this system."
-err4 = "No: the variable `HISTFILESIZE` is there."
+err1 = "Non : le shell enregistre plus d'historique que cela."
+err2 = "Non : le shell enregistre plus d'historique que cela."
+correct3 = "Correct : le shell enregistre 2000 anciennes commandes par défaut sur ce système."
+err4 = "Non : la variable `HISTFILESIZE` est présente."
 Ex().has_chosen(3, [err1, err2, correct3, err4])
 ```
 
 ---
 
-## How can I print a variable's value?
+## Comment imprimer la valeur d'une variable ?
 
 ```yaml
 type: ConsoleExercise
@@ -73,50 +74,50 @@ key: afae0f33a7
 xp: 100
 ```
 
-A simpler way to find a variable's value is to use a command called `echo`, which prints its arguments. Typing
+Une façon plus simple de trouver la valeur d'une variable est d'utiliser une commande appelée `echo`, qui imprime ses arguments. Dactylographie
 
 ```{shell}
 echo hello DataCamp!
 ```
 
-prints
+empreintes
 
 ```
 hello DataCamp!
 ```
 
-If you try to use it to print a variable's value like this:
+Si vous essayez de l'utiliser pour imprimer la valeur d'une variable comme ceci :
 
 ```{shell}
 echo USER
 ```
 
-it will print the variable's name, `USER`.
+il imprimera le nom de la variable, `USER`.
 
-To get the variable's value, you must put a dollar sign `$` in front of it. Typing 
+Pour obtenir la valeur de la variable, vous devez la faire précéder du signe du dollar `$`. Dactylographie 
 
 ```{shell}
 echo $USER
 ```
 
-prints
+empreintes
 
 ```
 repl
 ```
 
-This is true everywhere:
-to get the value of a variable called `X`,
-you must write `$X`.
-(This is so that the shell can tell whether you mean "a file named X"
-or "the value of a variable named X".)
+C'est le cas partout :
+pour obtenir la valeur d'une variable appelée `X`,
+vous devez écrire `$X`.
+(Cela permet au shell de savoir si vous voulez dire "un fichier nommé X"
+ou "la valeur d'une variable nommée X").
 
 `@instructions`
-The variable `OSTYPE` holds the name of the kind of operating system you are using.
-Display its value using `echo`.
+La variable `OSTYPE` contient le nom du type de système d'exploitation que vous utilisez.
+Affichez sa valeur à l'aide de `echo`.
 
 `@hint`
-Call `echo` with the variable `OSTYPE` prepended by `$`.
+Appelez `echo` avec la variable `OSTYPE` précédée de `$`.
 
 `@pre_exercise_code`
 ```{python}
@@ -135,18 +136,18 @@ Ex().multi(
     check_correct(
         has_expr_output(strict = True),
         multi(
-            has_code('echo', incorrect_msg="Did you call `echo`?"),
-            has_code('OSTYPE', incorrect_msg="Did you print the `OSTYPE` environment variable?"),
-            has_code(r'\$OSTYPE', incorrect_msg="Make sure to prepend `OSTYPE` by a `$`.")
+            has_code('echo', incorrect_msg="Avez-vous appelé `echo` ?"),
+            has_code('OSTYPE', incorrect_msg="Avez-vous imprimé la variable d'environnement `OSTYPE` ?"),
+            has_code(r'\$OSTYPE', incorrect_msg="Assurez-vous de faire précéder `OSTYPE` par un `$`.")
         )
     )
 )
-Ex().success_msg("Excellent echoing of environment variables! You're off to a good start. Let's carry on!")
+Ex().success_msg("Excellent écho des variables d'environnement ! Vous commencez bien. Continuons !")
 ```
 
 ---
 
-## How else does the shell store information?
+## Comment le shell stocke-t-il d'autres informations ?
 
 ```yaml
 type: BulletConsoleExercise
@@ -154,19 +155,19 @@ key: e925da48e4
 xp: 100
 ```
 
-The other kind of variable is called a **shell variable**,
-which is like a local variable in a programming language.
+L'autre type de variable est appelé **variable shell**,
+qui est comme une variable locale dans un langage de programmation.
 
-To create a shell variable,
-you simply assign a value to a name:
+Pour créer une variable shell,
+vous attribuez simplement une valeur à un nom :
 
 ```{shell}
 training=seasonal/summer.csv
 ```
 
-*without* any spaces before or after the `=` sign.
-Once you have done this,
-you can check the variable's value with:
+*sans* espace avant ou après le signe `=`.
+Une fois que vous avez fait cela,
+vous pouvez vérifier la valeur de la variable avec :
 
 ```{shell}
 echo $training
@@ -189,10 +190,10 @@ xp: 50
 ```
 
 `@instructions`
-Define a variable called `testing` with the value `seasonal/winter.csv`.
+Définissez une variable appelée `testing` avec la valeur `seasonal/winter.csv`.
 
 `@hint`
-There should *not* be spaces between the variable's name and its value.
+Il *ne* doit *pas* y avoir d'espace entre le nom de la variable et sa valeur.
 
 `@solution`
 ```{shell}
@@ -214,12 +215,11 @@ testing=seasonal/winter.csv
 Ex().multi(
     has_cwd('/home/repl'),
     multi(
-        has_code('testing', incorrect_msg='Did you define a shell variable named `testing`?'),
-        has_code('testing=', incorrect_msg='Did you write `=` directly after testing, with no spaces?'),
-        has_code('=seasonal/winter\.csv', incorrect_msg='Did you set the value of `testing` to `seasonal/winter.csv`?')
+        has_code('testing', incorrect_msg='Avez-vous défini une variable shell nommée `testing` ?'),
+        has_code('testing=', incorrect_msg='Avez-vous écrit `=` directement après testing, sans espaces ?'),
+        has_code('=seasonal/winter\.csv', incorrect_msg='Avez-vous défini la valeur de `testing` à `seasonal/winter.csv` ?')
     )
 )
-
 ```
 
 ***
@@ -231,12 +231,12 @@ xp: 50
 ```
 
 `@instructions`
-Use `head -n 1 SOMETHING` to get the first line from `seasonal/winter.csv`
-using the value of the variable `testing` instead of the name of the file.
+Utilisez `head -n 1 SOMETHING` pour obtenir la première ligne de `seasonal/winter.csv`
+en utilisant la valeur de la variable `testing` au lieu du nom du fichier.
 
 `@hint`
-Remember to use `$testing` rather than just `testing`
-(the `$` is needed to get the value of the variable).
+N'oubliez pas d'utiliser `$testing` au lieu de `testing`
+(le site `$` est nécessaire pour obtenir la valeur de la variable).
 
 `@solution`
 ```{shell}
@@ -251,23 +251,22 @@ head -n 1 $testing
 ```{python}
 Ex().multi(
     has_cwd('/home/repl'),
-    has_code(r'\$testing', incorrect_msg="Did you reference the shell variable using `$testing`?"),
+    has_code(r'\$testing', incorrect_msg="Avez-vous référencé la variable shell en utilisant `$testing` ?"),
     check_correct(
         has_output('^Date,Tooth\s*$'),
         multi(
-            has_code('head', incorrect_msg="Did you call `head`?"),
-            has_code('-n', incorrect_msg="Did you limit the number of lines with `-n`?"),
-            has_code(r'-n\s+1', incorrect_msg="Did you elect to keep 1 line with `-n 1`?")     
+            has_code('head', incorrect_msg="Avez-vous appelé `head` ?"),
+            has_code('-n', incorrect_msg="Avez-vous limité le nombre de lignes avec `-n` ?"),
+            has_code(r'-n\s+1', incorrect_msg="Avez-vous choisi de conserver 1 ligne avec `-n 1` ?")     
         )
     )
 )
-Ex().success_msg("Stellar! Let's see how you can repeat commands easily.")
-
+Ex().success_msg("Stellaire ! Voyons comment vous pouvez répéter les commandes facilement.")
 ```
 
 ---
 
-## How can I repeat a command many times?
+## Comment puis-je répéter une commande plusieurs fois ?
 
 ```yaml
 type: ConsoleExercise
@@ -275,15 +274,15 @@ key: 920d1887e3
 xp: 100
 ```
 
-Shell variables are also used in **loops**,
-which repeat commands many times.
-If we run this command:
+Les variables shell sont également utilisées dans les **boucles**,
+qui répètent les commandes plusieurs fois.
+Si nous exécutons cette commande :
 
 ```{shell}
 for filetype in gif jpg png; do echo $filetype; done
 ```
 
-it produces:
+qu'il produit :
 
 ```
 gif
@@ -291,21 +290,21 @@ jpg
 png
 ```
 
-Notice these things about the loop:
+Remarquez les éléments suivants concernant la boucle :
 
-1. The structure is `for` ...variable... `in` ...list... `; do` ...body... `; done`
-2. The list of things the loop is to process (in our case, the words `gif`, `jpg`, and `png`).
-3. The variable that keeps track of which thing the loop is currently processing (in our case, `filetype`).
-4. The body of the loop that does the processing (in our case, `echo $filetype`).
+1. La structure est la suivante : `for`...variable... `in`...liste... `; do`...corps... `; done`
+2. La liste des éléments que la boucle doit traiter (dans notre cas, les mots `gif`, `jpg`, et `png`).
+3. La variable qui indique la chose que la boucle est en train de traiter (dans notre cas, `filetype`).
+4. Le corps de la boucle qui effectue le traitement (dans notre cas, `echo $filetype`).
 
-Notice that the body uses `$filetype` to get the variable's value instead of just `filetype`,
-just like it does with any other shell variable.
-Also notice where the semi-colons go:
-the first one comes between the list and the keyword `do`,
-and the second comes between the body and the keyword `done`.
+Remarquez que le corps utilise `$filetype` pour obtenir la valeur de la variable au lieu de `filetype`,
+comme avec n'importe quelle autre variable du shell.
+Remarquez également l'emplacement des points-virgules :
+le premier vient entre la liste et le mot-clé `do`,
+et le second se situe entre le corps et le mot-clé `done`.
 
 `@instructions`
-Modify the loop so that it prints:
+Modifiez la boucle pour qu'elle s'imprime :
 
 ```
 docx
@@ -313,10 +312,10 @@ odt
 pdf
 ```
 
-Please use `filetype` as the name of the loop variable.
+Veuillez utiliser `filetype` comme nom de la variable de la boucle.
 
 `@hint`
-Use the code structure in the introductory text, swapping the image file types for document file types.
+Utilisez la structure de code du texte d'introduction, en remplaçant les types de fichiers images par des types de fichiers documents.
 
 `@pre_exercise_code`
 ```{python}
@@ -335,25 +334,25 @@ Ex().multi(
   check_correct(
     has_expr_output(),
     multi(
-      has_code('for', incorrect_msg='Did you call `for`?'),
-      has_code('filetype', incorrect_msg='Did you use `filetype` as the loop variable?'),
-      has_code('in', incorrect_msg='Did you use `in` before the list of file types?'),
-      has_code('docx odt pdf', incorrect_msg='Did you loop over `docx`, `odt` and `pdf` in that order?'),
-      has_code(r'pdf\s*;', incorrect_msg='Did you put a semi-colon after the last loop element?'),
-      has_code(r';\s*do', incorrect_msg='Did you use `do` after the first semi-colon?'),
-      has_code('echo', incorrect_msg='Did you call `echo`?'),
-      has_code(r'\$filetype', incorrect_msg='Did you echo `$filetype`?'),
-      has_code(r'filetype\s*;', incorrect_msg='Did you put a semi-colon after the loop body?'),
-      has_code('; done', incorrect_msg='Did you finish with `done`?')
+      has_code('for', incorrect_msg='Avez-vous appelé `for` ?'),
+      has_code('filetype', incorrect_msg='Avez-vous utilisé `filetype` comme variable de boucle ?'),
+      has_code('in', incorrect_msg='Avez-vous utilisé `in` avant la liste des types de fichiers ?'),
+      has_code('docx odt pdf', incorrect_msg='Avez-vous bouclé sur `docx`, `odt` et `pdf` dans cet ordre ?'),
+      has_code(r'pdf\s*;', incorrect_msg='Avez-vous mis un point-virgule après le dernier élément de la boucle ?'),
+      has_code(r';\s*do', incorrect_msg='Avez-vous utilisé `do` après le premier point-virgule ?'),
+      has_code('echo', incorrect_msg='Avez-vous appelé `echo` ?'),
+      has_code(r'\$filetype', incorrect_msg='Avez-vous fait écho de `$filetype` ?'),
+      has_code(r'filetype\s*;', incorrect_msg='Avez-vous mis un point-virgule après le corps de la boucle ?'),
+      has_code('; done', incorrect_msg='Avez-vous terminé avec `done` ?')
     )
   )
 )
-Ex().success_msg("First-rate for looping! Loops are brilliant if you want to do the same thing hundreds or thousands of times.")
+Ex().success_msg("Excellent pour la boucle ! Les boucles sont brillantes si vous voulez faire la même chose des centaines ou des milliers de fois.")
 ```
 
 ---
 
-## How can I repeat a command once for each file?
+## Comment puis-je répéter une commande pour chaque fichier ?
 
 ```yaml
 type: ConsoleExercise
@@ -361,15 +360,15 @@ key: 8468b70a71
 xp: 100
 ```
 
-You can always type in the names of the files you want to process when writing the loop,
-but it's usually better to use wildcards.
-Try running this loop in the console:
+Vous pouvez toujours saisir les noms des fichiers que vous souhaitez traiter lorsque vous écrivez la boucle,
+mais il est généralement préférable d'utiliser des caractères génériques.
+Essayez d'exécuter cette boucle dans la console :
 
 ```{shell}
 for filename in seasonal/*.csv; do echo $filename; done
 ```
 
-It prints:
+Il imprime :
 
 ```
 seasonal/autumn.csv
@@ -378,14 +377,14 @@ seasonal/summer.csv
 seasonal/winter.csv
 ```
 
-because the shell expands `seasonal/*.csv` to be a list of four filenames
-before it runs the loop.
+parce que le shell interprète `seasonal/*.csv` comme une liste de quatre noms de fichiers
+avant d'exécuter la boucle.
 
 `@instructions`
-Modify the wildcard expression to `people/*`
-so that the loop prints the names of the files in the `people` directory
-regardless of what suffix they do or don't have.
-Please use `filename` as the name of your loop variable.
+Modifiez l'expression générique en `people/*`
+pour que la boucle imprime les noms des fichiers dans le répertoire `people` 
+indépendamment du suffixe qu'ils ont ou n'ont pas.
+Veuillez utiliser `filename` comme nom de votre variable de boucle.
 
 `@hint`
 
@@ -407,25 +406,25 @@ Ex().multi(
   check_correct(
     has_expr_output(),
     multi(
-      has_code('for', incorrect_msg='Did you call `for`?'),
-      has_code('filename', incorrect_msg='Did you use `filename` as the loop variable?'),
-      has_code('in', incorrect_msg='Did you use `in` before the list of file types?'),
-      has_code('people/\*', incorrect_msg='Did you specify a list of files with `people/*`?'),
-      has_code(r'people/\*\s*;', incorrect_msg='Did you put a semi-colon after the list of files?'),
-      has_code(r';\s*do', incorrect_msg='Did you use `do` after the first semi-colon?'),
-      has_code('echo', incorrect_msg='Did you call `echo`?'),
-      has_code(r'\$filename', incorrect_msg='Did you echo `$filename`?'),
-      has_code(r'filename\s*;', incorrect_msg='Did you put a semi-colon after the loop body?'),
-      has_code('; done', incorrect_msg='Did you finish with `done`?')
+      has_code('for', incorrect_msg='Avez-vous appelé `for` ?'),
+      has_code('filename', incorrect_msg='Avez-vous utilisé `filename` comme variable de boucle ?'),
+      has_code('in', incorrect_msg='Avez-vous utilisé `in` avant la liste des types de fichiers ?'),
+      has_code('people/\*', incorrect_msg='Avez-vous spécifié une liste de fichiers avec `people/*` ?'),
+      has_code(r'people/\*\s*;', incorrect_msg='Avez-vous mis un point-virgule après la liste des fichiers ?'),
+      has_code(r';\s*do', incorrect_msg='Avez-vous utilisé `do` après le premier point-virgule ?'),
+      has_code('echo', incorrect_msg='Avez-vous appelé `echo` ?'),
+      has_code(r'\$filename', incorrect_msg='Avez-vous fait écho à `$filename` ?'),
+      has_code(r'filename\s*;', incorrect_msg='Avez-vous mis un point-virgule après le corps de la boucle ?'),
+      has_code('; done', incorrect_msg='Avez-vous terminé avec `done` ?')
     )
   )
 )
-Ex().success_msg("Loopy looping! Wildcards and loops make a powerful combination.")
+Ex().success_msg("Bouclage en boucle ! Les jokers et les boucles forment une combinaison puissante.")
 ```
 
 ---
 
-## How can I record the names of a set of files?
+## Comment enregistrer les noms d'un ensemble de fichiers ?
 
 ```yaml
 type: MultipleChoiceExercise
@@ -433,26 +432,26 @@ key: 153ca10317
 xp: 50
 ```
 
-People often set a variable using a wildcard expression to record a list of filenames.
-For example,
-if you define `datasets` like this:
+Il est fréquent de définir une variable à l'aide d'une expression générique pour enregistrer une liste de noms de fichiers.
+Par exemple :
+si vous définissez `datasets` comme suit :
 
 ```{shell}
 datasets=seasonal/*.csv
 ```
 
-you can display the files' names later using:
+vous pouvez afficher les noms des fichiers ultérieurement :
 
 ```{shell}
 for filename in $datasets; do echo $filename; done
 ```
 
-This saves typing and makes errors less likely.
+Cela permet d'économiser la frappe et de réduire les risques d'erreur.
 
 <hr>
 
-If you run these two commands in your home directory,
-how many lines of output will they print?
+Si vous exécutez ces deux commandes dans votre répertoire personnel,
+combien de lignes de sortie seront-elles imprimées ?
 
 ```{shell}
 files=seasonal/*.csv
@@ -460,12 +459,12 @@ for f in $files; do echo $f; done
 ```
 
 `@possible_answers`
-- None: since `files` is defined on a separate line, it has no value in the second line.
-- One: the word "files".
-- Four: the names of all four seasonal data files.
+- None : puisque `files` est défini sur une ligne distincte, il n'a pas de valeur dans la deuxième ligne.
+- Premièrement, le mot "dossiers".
+- Quatre : les noms des quatre fichiers de données saisonnières.
 
 `@hint`
-Remember that `X` on its own is just "X", while `$X` is the value of the variable `X`.
+Rappelez-vous que `X` est simplement "X", tandis que `$X` est la valeur de la variable `X`.
 
 `@pre_exercise_code`
 ```{python}
@@ -474,15 +473,15 @@ Remember that `X` on its own is just "X", while `$X` is the value of the variabl
 
 `@sct`
 ```{python}
-err1 = "No: you do not have to define a variable on the same line you use it."
-err2 = "No: this example defines and uses the variable `files` in the same shell."
-correct3 = "Correct. The command is equivalent to `for f in seasonal/*.csv; do echo $f; done`."
+err1 = "Non : vous n'avez pas à définir une variable sur la même ligne que vous l'utilisez."
+err2 = "Non : cet exemple définit et utilise la variable `files` dans le même shell."
+correct3 = "Correct. La commande est équivalente à `for f in seasonal/*.csv; do echo $f; done`."
 Ex().has_chosen(3, [err1, err2, correct3])
 ```
 
 ---
 
-## A variable's name versus its value
+## Le nom d'une variable par rapport à sa valeur
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -490,56 +489,56 @@ key: 4fcfb63c4f
 xp: 50
 ```
 
-A common mistake is to forget to use `$` before the name of a variable.
-When you do this,
-the shell uses the name you have typed
-rather than the value of that variable.
+Une erreur fréquente est d'oublier d'utiliser `$` avant le nom d'une variable.
+Lorsque vous faites cela,
+le shell utilise le nom que vous avez saisi
+plutôt que la valeur de cette variable.
 
-A more common mistake for experienced users is to mis-type the variable's name.
-For example,
-if you define `datasets` like this:
+Une erreur plus courante pour les utilisateurs expérimentés est de mal taper le nom de la variable.
+Par exemple :
+si vous définissez `datasets` comme suit :
 
 ```{shell}
 datasets=seasonal/*.csv
 ```
 
-and then type:
+puis tapez :
 
 ```{shell}
 echo $datsets
 ```
 
-the shell doesn't print anything,
-because `datsets` (without the second "a") isn't defined.
+le shell n'imprime rien,
+car `datsets` (sans le deuxième "a") n'est pas défini.
 
 <hr>
 
-If you were to run these two commands in your home directory,
-what output would be printed?
+Si vous exécutez ces deux commandes dans votre répertoire personnel,
+quelle est la sortie imprimée ?
 
 ```{shell}
 files=seasonal/*.csv
 for f in files; do echo $f; done
 ```
 
-(Read the first part of the loop carefully before answering.)
+(Lisez attentivement la première partie de la boucle avant de répondre).
 
 `@hint`
-Remember that `X` on its own is just "X", while `$X` is the value of the variable `X`.
+Rappelez-vous que `X` est simplement "X", tandis que `$X` est la valeur de la variable `X`.
 
 `@possible_answers`
-- [One line: the word "files".]
-- Four lines: the names of all four seasonal data files.
-- Four blank lines: the variable `f` isn't assigned a value.
+- [Une ligne : le mot "fichiers".]
+- Quatre lignes : les noms des quatre fichiers de données saisonnières.
+- Quatre lignes vides : la variable `f` n'a pas de valeur.
 
 `@feedback`
-- Correct: the loop uses `files` instead of `$files`, so the list consists of the word "files".
-- No: the loop uses `files` instead of `$files`, so the list consists of the word "files" rather than the expansion of `files`.
-- No: the variable `f` is defined automatically by the `for` loop.
+- Correct : la boucle utilise `files` au lieu de `$files`, de sorte que la liste se compose du mot "fichiers".
+- Non : la boucle utilise `files` au lieu de `$files`, de sorte que la liste se compose du mot "files" plutôt que de l'expansion de `files`.
+- Non : la variable `f` est définie automatiquement par la boucle `for`.
 
 ---
 
-## How can I run many commands in a single loop?
+## Comment puis-je exécuter plusieurs commandes dans une seule boucle ?
 
 ```yaml
 type: ConsoleExercise
@@ -547,28 +546,28 @@ key: 39b5dcf81a
 xp: 100
 ```
 
-Printing filenames is useful for debugging,
-but the real purpose of loops is to do things with multiple files.
-This loop prints the second line of each data file:
+L'impression des noms de fichiers est utile pour le débogage,
+mais l'objectif réel des boucles est de faire des choses avec plusieurs fichiers.
+Cette boucle imprime la deuxième ligne de chaque fichier de données :
 
 ```{shell}
 for file in seasonal/*.csv; do head -n 2 $file | tail -n 1; done
 ```
 
-It has the same structure as the other loops you have already seen:
-all that's different is that its body is a pipeline of two commands instead of a single command.
+Elle a la même structure que les autres boucles que vous avez déjà vues :
+tout ce qui est différent, c'est que son corps est un pipeline de deux commandes au lieu d'une seule.
 
 `@instructions`
-Write a loop that prints the last entry from July 2017 (`2017-07`) in every seasonal file. It should produce a similar output to:
+Ecrivez une boucle qui imprime la dernière entrée de juillet 2017 (`2017-07`) dans chaque fichier saisonnier. Il devrait produire un résultat similaire à :
 
 ```{shell}
 grep 2017-07 seasonal/winter.csv | tail -n 1
 ```
 
-but for **_each_** seasonal file separately. Please use `file` as the name of the loop variable, and remember to loop through the list of files `seasonal/*.csv` (_instead of 'seasonal/winter.csv' as in the example_).
+mais pour **_chaque_** saisonnier séparément. Veuillez utiliser `file` comme nom de la variable de boucle et n'oubliez pas de parcourir en boucle la liste des fichiers `seasonal/*.csv` _(au lieu de "seasonal/winter.csv" comme dans l'exemple_).
 
 `@hint`
-The loop body is the grep command shown in the instructions, with `seasonal/winter.csv` replaced by `$file`.
+Le corps de la boucle est la commande grep présentée dans les instructions, avec `seasonal/winter.csv` remplacé par `$file`.
 
 `@pre_exercise_code`
 ```{python}
@@ -585,31 +584,31 @@ for file in seasonal/*.csv; do grep 2017-07 $file | tail -n 1; done
 Ex().multi(
   has_cwd('/home/repl'),
   # Enforce use of for loop, so students can't just use grep -h 2017-07 seasonal/*.csv
-  has_code('for', incorrect_msg='Did you call `for`?'),
+  has_code('for', incorrect_msg='Avez-vous appelé `for` ?'),
   check_correct(
     has_expr_output(),
     multi(
-      has_code('file', incorrect_msg='Did you use `file` as the loop variable?'),
-      has_code('in', incorrect_msg='Did you use `in` before the list of files?'),
-      has_code('seasonal/\*', incorrect_msg='Did you specify a list of files with `seasonal/*`?'),
-      has_code(r'seasonal\/\*\.csv\s*;', incorrect_msg='Did you put a semi-colon after the list of files?'),
-      has_code(r';\s*do', incorrect_msg='Did you use `do` after the first semi-colon?'),
-      has_code('grep', incorrect_msg='Did you call `grep`?'),
-      has_code('2017-07', incorrect_msg='Did you match on `2017-07`?'),
-      has_code(r'\$file', incorrect_msg='Did you use `$file` as the name of the loop variable?'),
-      has_code(r'file\s*|', incorrect_msg='Did you use a pipe to connect your second command?'),
-      has_code(r'tail\s*-n\s*1', incorrect_msg='Did you use `tail -n 1` to print the last entry of each search in your second command?'),
-      has_code('; done', incorrect_msg='Did you finish with `done`?')
+      has_code('file', incorrect_msg='Avez-vous utilisé `file` comme variable de boucle ?'),
+      has_code('in', incorrect_msg='Avez-vous utilisé `in` avant la liste des fichiers ?'),
+      has_code('seasonal/\*', incorrect_msg='Avez-vous spécifié une liste de fichiers avec `seasonal/*` ?'),
+      has_code(r'seasonal\/\*\.csv\s*;', incorrect_msg='Avez-vous mis un point-virgule après la liste des fichiers ?'),
+      has_code(r';\s*do', incorrect_msg='Avez-vous utilisé `do` après le premier point-virgule ?'),
+      has_code('grep', incorrect_msg='Avez-vous appelé `grep` ?'),
+      has_code('2017-07', incorrect_msg='Avez-vous fait correspondre `2017-07` ?'),
+      has_code(r'\$file', incorrect_msg='Avez-vous utilisé `$file` comme nom de la variable de boucle ?'),
+      has_code(r'file\s*|', incorrect_msg='Avez-vous utilisé un pipe pour connecter votre deuxième commande ?'),
+      has_code(r'tail\s*-n\s*1', incorrect_msg='Avez-vous utilisé `tail -n 1` pour imprimer la dernière entrée de chaque recherche dans votre deuxième commande ?'),
+      has_code('; done', incorrect_msg='Avez-vous terminé avec `done` ?')
     )
   )
 )
 
-Ex().success_msg("Loopy looping! Wildcards and loops make a powerful combination.")
+Ex().success_msg("Bouclage en boucle ! Les jokers et les boucles forment une combinaison puissante.")
 ```
 
 ---
 
-## Why shouldn't I use spaces in filenames?
+## Pourquoi ne pas utiliser d'espaces dans les noms de fichiers ?
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -617,24 +616,24 @@ key: b974b7f45a
 xp: 50
 ```
 
-It's easy and sensible to give files multi-word names like `July 2017.csv`
-when you are using a graphical file explorer.
-However,
-this causes problems when you are working in the shell.
-For example,
-suppose you wanted to rename `July 2017.csv` to be `2017 July data.csv`.
-You cannot type:
+Il est facile et judicieux de donner aux fichiers des noms à plusieurs mots comme `July 2017.csv`
+lorsque vous utilisez un explorateur de fichiers graphique.
+Cependant,
+cela pose des problèmes lorsque vous travaillez dans le shell.
+Par exemple :
+supposons que vous souhaitiez renommer `July 2017.csv` en `2017 July data.csv`.
+Vous ne pouvez pas taper :
 
 ```{shell}
 mv July 2017.csv 2017 July data.csv
 ```
 
-because it looks to the shell as though you are trying to move
-four files called `July`, `2017.csv`, `2017`, and `July` (again)
-into a directory called `data.csv`.
-Instead,
-you have to quote the files' names
-so that the shell treats each one as a single parameter:
+parce que le shell a l'impression que vous essayez de vous déplacer
+quatre fichiers appelés `July`, `2017.csv`, `2017`, et `July` (à nouveau)
+dans un répertoire appelé `data.csv`.
+Au lieu de cela,
+vous devez citer les noms des fichiers
+de sorte que le shell traite chacun d'entre eux comme un seul paramètre :
 
 ```{shell}
 mv 'July 2017.csv' '2017 July data.csv'
@@ -642,34 +641,34 @@ mv 'July 2017.csv' '2017 July data.csv'
 
 <hr>
 
-If you have two files called `current.csv` and `last year.csv`
-(with a space in its name)
-and you type:
+Si vous avez deux fichiers appelés `current.csv` et `last year.csv`
+(avec un espace dans son nom)
+et vous tapez :
 
 ```{shell}
 rm current.csv last year.csv
 ```
 
-what will happen:
+ce qui se passera :
 
 `@hint`
-What would you think was going to happen if someone showed you the command and you didn't know what files existed?
+Que pensez-vous qu'il va se passer si quelqu'un vous montre la commande et que vous ne savez pas quels fichiers existent ?
 
 `@possible_answers`
-- The shell will print an error message because `last` and `year.csv` do not exist.
-- The shell will delete `current.csv`.
-- [Both of the above.]
-- Nothing.
+- Le shell affiche un message d'erreur car `last` et `year.csv` n'existent pas.
+- Le shell supprimera `current.csv`.
+- [Les deux.]
+- Rien.
 
 `@feedback`
-- Yes, but that's not all.
-- Yes, but that's not all.
-- Correct. You can use single quotes, `'`, or double quotes, `"`, around the file names.
-- Unfortunately not.
+- Oui, mais ce n'est pas tout.
+- Oui, mais ce n'est pas tout.
+- C'est exact. Vous pouvez utiliser des guillemets simples, `'`, ou des guillemets doubles, `"`, autour des noms de fichiers.
+- Malheureusement, ce n'est pas le cas.
 
 ---
 
-## How can I do many things in a single loop?
+## Comment puis-je faire plusieurs choses dans une seule boucle ?
 
 ```yaml
 type: MultipleChoiceExercise
@@ -677,10 +676,10 @@ key: f6d0530991
 xp: 50
 ```
 
-The loops you have seen so far all have a single command or pipeline in their body,
-but a loop can contain any number of commands.
-To tell the shell where one ends and the next begins,
-you must separate them with semi-colons:
+Les boucles que vous avez vues jusqu'à présent ont toutes une seule commande ou un seul pipeline dans leur corps,
+mais une boucle peut contenir n'importe quel nombre de commandes.
+Pour dire à la coquille où se termine l'un et où commence le suivant,
+vous devez les séparer par des points-virgules :
 
 ```{shell}
 for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done
@@ -699,23 +698,23 @@ seasonal/winter.csv
 
 <hr>
 
-Suppose you forget the semi-colon between the `echo` and `head` commands in the previous loop,
-so that you ask the shell to run:
+Supposons que vous oubliez le point-virgule entre les commandes `echo` et `head` dans la boucle précédente,
+afin de demander au shell de s'exécuter :
 
 ```{shell}
 for f in seasonal/*.csv; do echo $f head -n 2 $f | tail -n 1; done
 ```
 
-What will the shell do?
+Que fera le shell ?
 
 `@possible_answers`
-- Print an error message.
-- Print one line for each of the four files.
-- Print one line for `autumn.csv` (the first file).
-- Print the last line of each file.
+- Imprimer un message d'erreur.
+- Imprimez une ligne pour chacun des quatre fichiers.
+- Imprimez une ligne pour `autumn.csv` (le premier fichier).
+- Imprimez la dernière ligne de chaque fichier.
 
 `@hint`
-You can pipe the output of `echo` to `tail`.
+Vous pouvez diriger la sortie de `echo` vers `tail`.
 
 `@pre_exercise_code`
 ```{python}
@@ -724,9 +723,9 @@ You can pipe the output of `echo` to `tail`.
 
 `@sct`
 ```{python}
-err1 = "No: the loop will run, it just won't do something sensible."
-correct2 = "Yes: `echo` produces one line that includes the filename twice, which `tail` then copies."
-err3 = "No: the loop runs one for each of the four filenames."
-err4 = "No: the input of `tail` is the output of `echo` for each filename."
+err1 = "Non : la boucle s'exécutera, elle ne fera simplement rien de sensé."
+correct2 = "Oui : `echo` produit une ligne qui inclut le nom de fichier deux fois, que `tail` copie ensuite."
+err3 = "Non : la boucle s'exécute une fois pour chacun des quatre noms de fichiers."
+err4 = "Non : l'entrée de `tail` est la sortie de `echo` pour chaque nom de fichier."
 Ex().has_chosen(2, [err1, correct2, err3, err4])
 ```

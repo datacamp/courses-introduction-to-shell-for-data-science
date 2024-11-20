@@ -1,17 +1,17 @@
 ---
-title: Manipulating files and directories
+title: Manipulation de fichiers et de répertoires
 description: >-
-  This chapter is a brief introduction to the Unix shell. You'll learn why it is
-  still in use after almost 50 years, how it compares to the graphical tools you
-  may be more familiar with, how to move around in the shell, and how to create,
-  modify, and delete files and folders.
+  Ce chapitre est une brève introduction au shell Unix. Vous apprendrez pourquoi
+  il est toujours utilisé après presque 50 ans, comment il se compare aux outils
+  graphiques qui vous sont peut-être plus familiers, comment vous déplacer dans
+  le shell et comment créer, modifier et supprimer des fichiers et des dossiers.
 free_preview: true
 lessons:
   - nb_of_exercises: 12
-    title: How does the shell compare to a desktop interface?
+    title: Comment le shell se compare-t-il à une interface de bureau ?
 ---
 
-## How does the shell compare to a desktop interface?
+## Comment le shell se compare-t-il à une interface de bureau ?
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -19,51 +19,51 @@ key: badd717ea4
 xp: 50
 ```
 
-An operating system like Windows, Linux, or Mac OS is a special kind of program.
-It controls the computer's processor, hard drive, and network connection,
-but its most important job is to run other programs.
+Un système d'exploitation tel que Windows, Linux ou Mac OS est un type de programme particulier.
+Il contrôle le processeur, le disque dur et la connexion réseau de l'ordinateur,
+mais sa tâche la plus importante est d'exécuter d'autres programmes.
 
-Since human beings aren't digital,
-they need an interface to interact with the operating system.
-The most common one these days is a graphical file explorer,
-which translates clicks and double-clicks into commands to open files and run programs.
-Before computers had graphical displays,
-though,
-people typed instructions into a program called a **command-line shell**.
-Each time a command is entered,
-the shell runs some other programs,
-prints their output in human-readable form,
-and then displays a *prompt* to signal that it's ready to accept the next command.
-(Its name comes from the notion that it's the "outer shell" of the computer.)
+Les êtres humains n'étant pas numériques,
+ils ont besoin d'une interface pour interagir avec le système d'exploitation.
+Le plus courant aujourd'hui est l'explorateur de fichiers graphique,
+qui traduit les clics et les double-clics en commandes permettant d'ouvrir des fichiers et d'exécuter des programmes.
+Avant que les ordinateurs n'aient des écrans graphiques,
+mais..,
+les personnes tapaient des instructions dans un programme appelé **shell de ligne de commande**.
+Chaque fois qu'une commande est introduite,
+le shell exécute d'autres programmes,
+imprime leurs résultats sous une forme lisible par l'homme,
+puis affiche une *invite pour* signaler qu'il est prêt à accepter la commande suivante.
+(Son nom vient du fait qu'il s'agit de la "shell" de l'ordinateur).
 
-Typing commands instead of clicking and dragging may seem clumsy at first,
-but as you will see,
-once you start spelling out what you want the computer to do,
-you can combine old commands to create new ones
-and automate repetitive operations
-with just a few keystrokes.
+Taper des commandes au lieu de cliquer et de faire glisser peut sembler maladroit au début,
+mais comme vous le verrez,
+une fois que vous commencez à préciser ce que vous voulez que l'ordinateur fasse,
+vous pouvez combiner d'anciennes commandes pour en créer de nouvelles
+et automatiser les opérations répétitives
+en quelques clics.
 
 <hr>
-What is the relationship between the graphical file explorer that most people use and the command-line shell?
+Quelle est la relation entre l'explorateur de fichiers graphique que la plupart des gens utilisent et le shell de ligne de commande ?
 
 `@hint`
-Remember that a user can only interact with an operating system through a program.
+Rappelez-vous qu'un utilisateur ne peut interagir avec un système d'exploitation que par l'intermédiaire d'un programme.
 
 `@possible_answers`
-- The file explorer lets you view and edit files, while the shell lets you run programs.
-- The file explorer is built on top of the shell.
-- The shell is part of the operating system, while the file explorer is separate.
-- [They are both interfaces for issuing commands to the operating system.]
+- L'explorateur de fichiers vous permet de visualiser et de modifier des fichiers, tandis que le shell vous permet d'exécuter des programmes.
+- L'explorateur de fichiers est construit au-dessus du shell.
+- Le shell fait partie du système d'exploitation, tandis que l'explorateur de fichiers en est séparé.
+- [Il s'agit de deux interfaces permettant d'envoyer des commandes au système d'exploitation.]
 
 `@feedback`
-- Both allow you to view and edit files and run programs.
-- Graphical file explorers and the shell both call the same underlying operating system functions.
-- The shell and the file explorer are both programs that translate user commands (typed or clicked) into calls to the operating system.
-- Correct! Both take the user's commands (whether typed or clicked) and send them to the operating system.
+- Tous deux vous permettent d'afficher et de modifier des fichiers et d'exécuter des programmes.
+- Les explorateurs de fichiers graphiques et le shell font tous deux appel aux mêmes fonctions sous-jacentes du système d'exploitation.
+- Le shell et l'explorateur de fichiers sont tous deux des programmes qui traduisent les commandes de l'utilisateur (tapées ou cliquées) en appels au système d'exploitation.
+- C'est exact ! Les deux prennent les commandes de l'utilisateur (qu'elles soient tapées ou cliquées) et les envoient au système d'exploitation.
 
 ---
 
-## Where am I?
+## Où suis-je ?
 
 ```yaml
 type: MultipleChoiceExercise
@@ -71,22 +71,22 @@ key: 7c1481dbd3
 xp: 50
 ```
 
-The **filesystem** manages files and directories (or folders).
-Each is identified by an **absolute path**
-that shows how to reach it from the filesystem's **root directory**:
-`/home/repl` is the directory `repl` in the directory `home`,
-while `/home/repl/course.txt` is a file `course.txt` in that directory,
-and `/` on its own is the root directory.
+Le **système de fichiers** gère les fichiers et les répertoires (ou dossiers).
+Chacun est identifié par un **chemin absolu**
+qui montre comment l'atteindre à partir du **répertoire racine** du système de fichiers :
+`/home/repl` est le répertoire `repl` dans le répertoire `home`,
+tandis que `/home/repl/course.txt` est un fichier `course.txt` dans ce répertoire,
+et `/` est le répertoire racine.
 
-To find out where you are in the filesystem,
-run the command `pwd`
-(short for "**p**rint **w**orking **d**irectory").
-This prints the absolute path of your **current working directory**,
-which is where the shell runs commands and looks for files by default.
+Pour savoir où vous vous trouvez dans le système de fichiers,
+exécutez la commande `pwd`
+(abréviation de "**print** **working** **directory**").
+Cette commande affiche le chemin absolu de votre **répertoire de travail actuel**,
+qui est l'endroit où le shell exécute les commandes et recherche les fichiers par défaut.
 
 <hr>
 Run `pwd`.
-Where are you right now?
+Où êtes-vous en ce moment ?
 
 `@possible_answers`
 - `/home`
@@ -94,7 +94,7 @@ Where are you right now?
 - `/home/repl`
 
 `@hint`
-Unix systems typically place all users' home directories underneath `/home`.
+Les systèmes Unix placent généralement les répertoires personnels de tous les utilisateurs sous `/home`.
 
 `@pre_exercise_code`
 ```{python}
@@ -103,15 +103,15 @@ Unix systems typically place all users' home directories underneath `/home`.
 
 `@sct`
 ```{python}
-err = "That is not the correct path."
-correct = "Correct - you are in `/home/repl`."
+err = "Ce n'est pas le bon chemin."
+correct = "Correct - vous êtes dans `/home/repl`."
 
 Ex().has_chosen(3, [err, err, correct])
 ```
 
 ---
 
-## How can I identify files and directories?
+## Comment identifier les fichiers et les répertoires ?
 
 ```yaml
 type: MultipleChoiceExercise
@@ -119,24 +119,24 @@ key: f5b0499835
 xp: 50
 ```
 
-`pwd` tells you where you are.
-To find out what's there,
-type `ls` (which is short for "**l**i**s**ting") and press the enter key.
-On its own,
-`ls` lists the contents of your current directory
-(the one displayed by `pwd`).
-If you add the names of some files,
-`ls` will list them,
-and if you add the names of directories,
-it will list their contents.
-For example,
-`ls /home/repl` shows you what's in your starting directory
-(usually called your **home directory**).
+`pwd` vous indique où vous vous trouvez.
+Pour découvrir ce qui s'y trouve,
+tapez `ls` (abréviation de "**listing**") et appuyez sur la touche entrée.
+En soi,
+`ls` liste le contenu de votre répertoire actuel
+(celui affiché par `pwd`).
+Si vous ajoutez les noms de certains fichiers,
+`ls` en dressera la liste,
+et si vous ajoutez les noms des répertoires,
+la liste de leur contenu s'affichera.
+Par exemple :
+`ls /home/repl` vous indique ce qui se trouve dans votre répertoire de départ
+(généralement appelé votre **répertoire personnel**).
 
 <hr>
-Use `ls` with an appropriate argument to list the files in the directory `/home/repl/seasonal`
-(which holds information on dental surgeries by date, broken down by season).
-Which of these files is *not* in that directory?
+Utilisez `ls` avec un argument approprié pour lister les fichiers dans le répertoire `/home/repl/seasonal`
+(qui contient des informations sur les cabinets dentaires par date, ventilées par saison).
+Lequel de ces fichiers ne se trouve pas dans ce répertoire ?
 
 `@possible_answers`
 - `autumn.csv`
@@ -145,7 +145,7 @@ Which of these files is *not* in that directory?
 - `winter.csv`
 
 `@hint`
-If you give `ls` a path, it shows what's in that path.
+Si vous donnez un chemin à `ls`, il indique ce qui se trouve sur ce chemin.
 
 `@pre_exercise_code`
 ```{python}
@@ -154,15 +154,15 @@ If you give `ls` a path, it shows what's in that path.
 
 `@sct`
 ```{python}
-err = "That file is in the `seasonal` directory."
-correct = "Correct - that file is *not* in the `seasonal` directory."
+err = "Ce fichier se trouve dans le répertoire `seasonal`."
+correct = "Correct - ce fichier ne se trouve *pas* dans le répertoire `seasonal`."
 
 Ex().has_chosen(2, [err, correct, err, err])
 ```
 
 ---
 
-## How else can I identify files and directories?
+## Comment puis-je identifier les fichiers et les répertoires ?
 
 ```yaml
 type: BulletConsoleExercise
@@ -170,13 +170,13 @@ key: a766184b59
 xp: 100
 ```
 
-An absolute path is like a latitude and longitude: it has the same value no matter where you are. A **relative path**, on the other hand, specifies a location starting from where you are: it's like saying "20 kilometers north".
+Un chemin absolu est comme une latitude et une longitude : il a la même valeur quel que soit l'endroit où vous vous trouvez. Un **chemin relatif**, en revanche, spécifie un emplacement à partir de l'endroit où vous vous trouvez : c'est comme dire "20 kilomètres au nord".
 
-As examples:
-- If you are in the directory `/home/repl`, the **relative** path `seasonal` specifies the same directory as the **absolute** path `/home/repl/seasonal`. 
-- If you are in the directory `/home/repl/seasonal`, the **relative** path `winter.csv` specifies the same file as the **absolute** path `/home/repl/seasonal/winter.csv`.
+A titre d'exemple :
+- Si vous vous trouvez dans le répertoire `/home/repl`, le chemin **relatif** `seasonal` indique le même répertoire que le chemin **absolu** `/home/repl/seasonal`. 
+- Si vous vous trouvez dans le répertoire `/home/repl/seasonal`, le chemin **relatif** `winter.csv` spécifie le même fichier que le chemin **absolu** `/home/repl/seasonal/winter.csv`.
 
-The shell decides if a path is absolute or relative by looking at its first character: If it begins with `/`, it is absolute. If it *does not* begin with `/`, it is relative.
+Le shell décide si un chemin est absolu ou relatif en regardant son premier caractère : S'il commence par `/`, il est absolu. S'il ne commence *pas* par `/`, il est relatif.
 
 `@pre_exercise_code`
 ```{python}
@@ -192,12 +192,12 @@ xp: 35
 ```
 
 `@instructions`
-You are in `/home/repl`. Use `ls` with a **relative path** to list the file that has an absolute path of `/home/repl/course.txt` (and only that file).
+Vous êtes sur `/home/repl`. Utilisez `ls` avec un **chemin d'accès relatif** pour répertorier le fichier dont le chemin d'accès absolu est `/home/repl/course.txt` (et uniquement ce fichier).
 
 `@hint`
-You can often construct the relative path to a file or directory below your current location
-by subtracting the absolute path of your current location
-from the absolute path of the thing you want.
+Vous pouvez souvent construire le chemin relatif d'un fichier ou d'un répertoire situé en dessous de votre emplacement actuel
+en soustrayant le chemin absolu de votre position actuelle
+à partir du chemin absolu de la chose que vous voulez.
 
 `@solution`
 ```{shell}
@@ -209,13 +209,12 @@ ls course.txt
 ```{python}
 Ex().multi(
     has_cwd("/home/repl"),
-    has_code("ls", incorrect_msg = "You didn't call `ls` to generate the file listing."), # to prevent `echo "course.txt"`
+    has_code("ls", incorrect_msg = "Vous n'avez pas appelé `ls` pour générer la liste des fichiers."), # to prevent `echo "course.txt"`
     check_correct(
       has_expr_output(strict=True),
-      has_code("ls +course.txt", incorrect_msg = "Your command didn't generate the correct file listing. Use `ls` followed by a relative path to `/home/repl/course.txt`.")
+      has_code("ls +course.txt", incorrect_msg = "Votre commande n'a pas généré la liste de fichiers correcte. Utilisez `ls` suivi d'un chemin relatif vers `/home/repl/course.txt`.")
     )
 )
-
 ```
 
 ***
@@ -227,12 +226,12 @@ xp: 35
 ```
 
 `@instructions`
-You are in `/home/repl`.
-Use `ls` with a **relative** path
-to list the file `/home/repl/seasonal/summer.csv` (and only that file).
+Vous êtes sur `/home/repl`.
+Utilisez `ls` avec un chemin d'accès **relatif** 
+pour répertorier le fichier `/home/repl/seasonal/summer.csv` (et uniquement ce fichier).
 
 `@hint`
-Relative paths do *not* start with a leading '/'.
+Les chemins relatifs ne commencent *pas* par un "/".
 
 `@solution`
 ```{shell}
@@ -244,10 +243,10 @@ ls seasonal/summer.csv
 ```{python}
 Ex().multi(
     has_cwd("/home/repl"),
-    has_code("ls", incorrect_msg = "You didn't call `ls` to generate the file listing."), 
+    has_code("ls", incorrect_msg = "Vous n'avez pas appelé `ls` pour générer la liste des fichiers."), 
     check_correct(
       has_expr_output(strict=True),
-      has_code("ls +seasonal/summer.csv", incorrect_msg = "Your command didn't generate the correct file listing. Use `ls` followed by a relative path to `/home/repl/seasonal/summer.csv`.")
+      has_code("ls +seasonal/summer.csv", incorrect_msg = "Votre commande n'a pas généré la liste de fichiers correcte. Utilisez `ls` suivi d'un chemin relatif vers `/home/repl/seasonal/summer.csv`.")
     )
 )
 ```
@@ -261,12 +260,12 @@ xp: 30
 ```
 
 `@instructions`
-You are in `/home/repl`.
-Use `ls` with a **relative** path
-to list the contents of the directory `/home/repl/people`.
+Vous êtes sur `/home/repl`.
+Utilisez `ls` avec un chemin d'accès **relatif** 
+pour lister le contenu du répertoire `/home/repl/people`.
 
 `@hint`
-Relative paths do not start with a leading '/'.
+Les chemins relatifs ne commencent pas par un "/".
 
 `@solution`
 ```{shell}
@@ -278,19 +277,18 @@ ls people
 ```{python}
 Ex().multi(
     has_cwd("/home/repl"),
-    has_code("ls", incorrect_msg = "You didn't call `ls` to generate the file listing."), 
+    has_code("ls", incorrect_msg = "Vous n'avez pas appelé `ls` pour générer la liste des fichiers."), 
     check_correct(
       has_expr_output(strict=True),
-      has_code("ls +people", incorrect_msg = "Your command didn't generate the correct file listing. Use `ls` followed by a relative path to `/home/repl/people`.")
+      has_code("ls +people", incorrect_msg = "Votre commande n'a pas généré la liste correcte des fichiers. Utilisez `ls` suivi d'un chemin relatif vers `/home/repl/people`.")
     )
 )
-Ex().success_msg("Well done. Now that you know about listing files and directories, let's see how you can move around the filesystem!")
-
+Ex().success_msg("Bien joué. Maintenant que vous savez comment lister les fichiers et les répertoires, voyons comment vous pouvez vous déplacer dans le système de fichiers !")
 ```
 
 ---
 
-## How can I move to another directory?
+## Comment puis-je changer de répertoire ?
 
 ```yaml
 type: BulletConsoleExercise
@@ -298,17 +296,17 @@ key: dbdaec5610
 xp: 100
 ```
 
-Just as you can move around in a file browser by double-clicking on folders,
-you can move around in the filesystem using the command `cd`
-(which stands for "change directory").
+Tout comme vous pouvez vous déplacer dans un navigateur de fichiers en double-cliquant sur les dossiers,
+vous pouvez vous déplacer dans le système de fichiers à l'aide de la commande `cd`
+(qui signifie "changer de répertoire").
 
-If you type `cd seasonal` and then type `pwd`,
-the shell will tell you that you are now in `/home/repl/seasonal`.
-If you then run `ls` on its own,
-it shows you the contents of `/home/repl/seasonal`,
-because that's where you are.
-If you want to get back to your home directory `/home/repl`,
-you can use the command `cd /home/repl`.
+Si vous tapez `cd seasonal` puis `pwd`,
+le shell vous indiquera que vous êtes maintenant sur `/home/repl/seasonal`.
+Si vous exécutez ensuite `ls` de manière autonome,
+il vous montre le contenu de `/home/repl/seasonal`,
+car c'est là que vous êtes.
+Si vous souhaitez revenir à votre répertoire d'origine `/home/repl`,
+vous pouvez utiliser la commande `cd /home/repl`.
 
 `@pre_exercise_code`
 ```{python}
@@ -324,11 +322,11 @@ xp: 35
 ```
 
 `@instructions`
-You are in `/home/repl`/.
-Change directory to `/home/repl/seasonal` using a relative path.
+Vous êtes sur `/home/repl`/.
+Changez de répertoire pour `/home/repl/seasonal` en utilisant un chemin d'accès relatif.
 
 `@hint`
-Remember that `cd` stands for "change directory" and that relative paths do not start with a leading '/'.
+N'oubliez pas que `cd` signifie "changer de répertoire" et que les chemins relatifs ne commencent pas par un "/".
 
 `@solution`
 ```{shell}
@@ -340,9 +338,8 @@ cd seasonal
 ```{python}
 Ex().check_correct(
   has_cwd('/home/repl/seasonal'),
-  has_code('cd +seasonal', incorrect_msg="If your current working directory (find out with `pwd`) is `/home/repl`, you can move to the `seasonal` folder with `cd seasonal`.")
+  has_code('cd +seasonal', incorrect_msg="Si votre répertoire de travail actuel (vérifiez avec `pwd`) est `/home/repl`, vous pouvez vous déplacer vers le dossier `seasonal` avec `cd seasonal`.")
 )
-
 ```
 
 ***
@@ -354,10 +351,10 @@ xp: 35
 ```
 
 `@instructions`
-Use `pwd` to check that you're there.
+Utilisez `pwd` pour vérifier que vous êtes bien là.
 
 `@hint`
-Remember to press "enter" or "return" after entering the command.
+N'oubliez pas d'appuyer sur "enter" ou "return" après avoir saisi la commande.
 
 `@solution`
 ```{shell}
@@ -374,7 +371,6 @@ Ex().multi(
       has_code('pwd')
     )
 )
-
 ```
 
 ***
@@ -386,10 +382,10 @@ xp: 30
 ```
 
 `@instructions`
-Use `ls` without any paths to see what's in that directory.
+Utilisez `ls` sans chemin d'accès pour voir ce qui se trouve dans ce répertoire.
 
 `@hint`
-Remember to press "enter" or "return" after the command.
+N'oubliez pas d'appuyer sur "enter" ou "return" après la commande.
 
 `@solution`
 ```{shell}
@@ -403,17 +399,16 @@ Ex().multi(
     has_cwd('/home/repl/seasonal'),
     check_correct(
       has_expr_output(),
-      has_code('ls', incorrect_msg="Your command did not generate the correct output. Have you used `ls` with no paths to show the contents of the current directory?")
+      has_code('ls', incorrect_msg="Votre commande n'a pas généré la sortie correcte. Avez-vous utilisé `ls` sans chemins pour afficher le contenu du répertoire courant ?")
     )
 )
 
-Ex().success_msg("Neat! This was about navigating down to subdirectories. What about moving up? Let's find out!")
-
+Ex().success_msg("Super ! Il s'agissait de naviguer vers les sous-répertoires. Qu'en est-il de remonter ? Découvrons-le !")
 ```
 
 ---
 
-## How can I move up a directory?
+## Comment puis-je monter dans un répertoire ?
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -421,56 +416,56 @@ key: 09c717ef76
 xp: 50
 ```
 
-The **parent** of a directory is the directory above it.
-For example, `/home` is the parent of `/home/repl`,
-and `/home/repl` is the parent of `/home/repl/seasonal`.
-You can always give the absolute path of your parent directory to commands like `cd` and `ls`.
-More often,
-though,
-you will take advantage of the fact that the special path `..`
-(two dots with no spaces) means "the directory above the one I'm currently in".
-If you are in `/home/repl/seasonal`,
-then `cd ..` moves you up to `/home/repl`.
-If you use `cd ..` once again,
-it puts you in `/home`.
-One more `cd ..` puts you in the *root directory* `/`,
-which is the very top of the filesystem.
-(Remember to put a space between `cd` and `..` - it is a command and a path, not a single four-letter command.)
+Le **parent** d'un répertoire est le répertoire situé au-dessus de lui.
+Par exemple, `/home` est le parent de `/home/repl`,
+et `/home/repl` est le parent de `/home/repl/seasonal`.
+Vous pouvez toujours donner le chemin absolu de votre répertoire parent à des commandes telles que `cd` et `ls`.
+Plus souvent,
+mais..,
+vous profiterez du fait que le chemin spécial `..`
+(deux points sans espace) signifie "le répertoire au-dessus de celui dans lequel je me trouve actuellement".
+Si vous êtes sur `/home/repl/seasonal`,
+Ensuite, `cd ..` vous fait passer à `/home/repl`.
+Si vous utilisez à nouveau `cd ..`,
+Il vous place sur le site `/home`.
+Un autre `cd ..` vous place dans le *répertoire racine* `/`,
+qui est le sommet du système de fichiers.
+(N'oubliez pas de mettre un espace entre `cd` et `..` - il s'agit d'une commande et d'un chemin, et non d'une seule commande de quatre lettres).
 
-A single dot on its own, `.`, always means "the current directory",
-so `ls` on its own and `ls .` do the same thing,
-while `cd .` has no effect
-(because it moves you into the directory you're currently in).
+Un point seul, `.`, signifie toujours "le répertoire actuel",
+Ainsi, `ls` et `ls .` font la même chose,
+tandis que `cd .` n'a aucun effet
+(parce qu'il vous déplace dans le répertoire dans lequel vous vous trouvez actuellement).
 
-One final special path is `~` (the tilde character),
-which means "your home directory",
-such as `/home/repl`.
-No matter where you are,
-`ls ~` will always list the contents of your home directory,
-and `cd ~` will always take you home.
+Un dernier chemin spécial est `~` (le caractère tilde),
+ce qui signifie "votre répertoire personnel",
+comme `/home/repl`.
+Où que vous soyez,
+`ls ~` affichera toujours le contenu de votre répertoire personnel,
+et `cd ~` vous ramènera toujours à la maison.
 
 <hr>
-If you are in `/home/repl/seasonal`,
-where does `cd ~/../.` take you?
+Si vous êtes dans `/home/repl/seasonal`,
+où vous mène `cd ~/../.` ?
 
 `@hint`
-Trace the path one directory at a time.
+Tracez le chemin un répertoire à la fois.
 
 `@possible_answers`
 - `/home/repl`
 - [`/home`]
 - `/home/repl/seasonal`
-- `/` (the root directory)
+- `/` (le répertoire racine)
 
 `@feedback`
-- No, but either `~` or `..` on its own would take you there.
-- Correct! The path means 'home directory', 'up a level', 'here'.
-- No, but `.` on its own would do that.
-- No, the final part of the path is `.` (meaning "here") rather than `..` (meaning "up").
+- Non, mais l'un ou l'autre des sites `~` ou `..`, pris isolément, vous permettrait d'atteindre cet objectif.
+- C'est exact ! Le chemin d'accès signifie "répertoire personnel", "à un niveau supérieur", "ici".
+- Non, mais `.` le ferait à lui seul.
+- Non, la dernière partie du chemin est `.` (signifiant "ici") et non `..` (signifiant "en haut").
 
 ---
 
-## How can I copy files?
+## Comment puis-je copier des fichiers ?
 
 ```yaml
 type: BulletConsoleExercise
@@ -478,28 +473,28 @@ key: 832de9e74c
 xp: 100
 ```
 
-You will often want to copy files,
-move them into other directories to organize them,
-or rename them.
-One command to do this is `cp`, which is short for "copy".
-If `original.txt` is an existing file,
-then:
+Vous souhaiterez souvent copier des fichiers,
+les déplacer dans d'autres répertoires pour les organiser,
+ou les renommer.
+L'une des commandes permettant d'effectuer cette opération est `cp`, qui est l'abréviation de "copy" (copier).
+Si `original.txt` est un fichier existant,
+ensuite :
 
 ```{shell}
 cp original.txt duplicate.txt
 ```
 
-creates a copy of `original.txt` called `duplicate.txt`.
-If there already was a file called `duplicate.txt`,
-it is overwritten.
-If the last parameter to `cp` is an existing directory,
-then a command like:
+crée une copie de `original.txt` appelée `duplicate.txt`.
+S'il existe déjà un fichier appelé `duplicate.txt`,
+il est écrasé.
+Si le dernier paramètre de `cp` est un répertoire existant,
+puis une commande comme :
 
 ```{shell}
 cp seasonal/autumn.csv seasonal/winter.csv backup
 ```
 
-copies *all* of the files into that directory.
+copie *tous les* fichiers dans ce répertoire.
 
 `@pre_exercise_code`
 ```{python}
@@ -515,12 +510,12 @@ xp: 50
 ```
 
 `@instructions`
-Make a copy of `seasonal/summer.csv` in the `backup` directory (which is also in `/home/repl`),
-calling the new file `summer.bck`.
+Faites une copie de `seasonal/summer.csv` dans le répertoire `backup` (qui se trouve également dans `/home/repl`),
+appeler le nouveau fichier `summer.bck`.
 
 `@hint`
-Combine the name of the destination directory and the name of the copied file
-to create a relative path for the new file.
+Combinez le nom du répertoire de destination et le nom du fichier copié.
+pour créer un chemin relatif pour le nouveau fichier.
 
 `@solution`
 ```{shell}
@@ -531,10 +526,9 @@ cp seasonal/summer.csv backup/summer.bck
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_file('/home/repl/backup/summer.bck', missing_msg="`summer.bck` doesn't appear to exist in the `backup` directory. Provide two paths to `cp`: the existing file (`seasonal/summer.csv`) and the destination file (`backup/summer.bck`)."),
+    check_file('/home/repl/backup/summer.bck', missing_msg="`summer.bck` ne semble pas exister dans le répertoire `backup`. Fournissez deux chemins à `cp` : le fichier existant (`seasonal/summer.csv`) et le fichier de destination (`backup/summer.bck`)."),
     has_cwd('/home/repl')
 )
-
 ```
 
 ***
@@ -546,12 +540,12 @@ xp: 50
 ```
 
 `@instructions`
-Copy `spring.csv` and `summer.csv` from the `seasonal` directory into the `backup` directory
-*without* changing your current working directory (`/home/repl`).
+Copiez `spring.csv` et `summer.csv` du répertoire `seasonal` dans le répertoire `backup`.
+*sans* modifier votre répertoire de travail actuel (`/home/repl`).
 
 `@hint`
-Use `cp` with the names of the files you want to copy
-and *then* the name of the directory to copy them to.
+Utilisez `cp` avec les noms des fichiers que vous souhaitez copier
+*puis* le nom du répertoire dans lequel les copier.
 
 `@solution`
 ```{shell}
@@ -561,18 +555,18 @@ cp seasonal/spring.csv seasonal/summer.csv backup
 
 `@sct`
 ```{python}
-patt = "`%s` doesn't appear to have been copied into the `backup` directory. Provide two filenames and a directory name to `cp`."
+patt = "`%s` ne semble pas avoir été copié dans le répertoire `backup`. Fournissez deux noms de fichiers et un nom de répertoire à `cp`."
 Ex().multi(
-    has_cwd('/home/repl', incorrect_msg="Make sure to copy the files while in `{{dir}}`! Use `cd {{dir}}` to navigate back there."),
+    has_cwd('/home/repl', incorrect_msg="Assurez-vous de copier les fichiers tout en étant dans `{{dir}}` ! Utilisez `cd {{dir}}` pour y revenir."),
     check_file('/home/repl/backup/spring.csv', missing_msg=patt%'spring.csv'),
     check_file('/home/repl/backup/summer.csv', missing_msg=patt%'summer.csv')
 )
-Ex().success_msg("Good job. Other than copying, we should also be able to move files from one directory to another. Learn about it in the next exercise!")
+Ex().success_msg("Bon travail. En plus de copier, nous devrions également être capables de déplacer des fichiers d'un répertoire à un autre. Apprenez-en plus dans l'exercice suivant !")
 ```
 
 ---
 
-## How can I move a file?
+## Comment déplacer un fichier ?
 
 ```yaml
 type: ConsoleExercise
@@ -580,23 +574,23 @@ key: 663a083a3c
 xp: 100
 ```
 
-While `cp` copies a file,
-`mv` moves it from one directory to another,
-just as if you had dragged it in a graphical file browser.
-It handles its parameters the same way as `cp`,
-so the command:
+Tandis que `cp` copie un fichier,
+`mv` le déplace d'un répertoire à un autre,
+comme si vous l'aviez fait glisser dans un navigateur de fichiers graphiques.
+Il traite ses paramètres de la même manière que `cp`,
+donc la commande :
 
 ```{shell}
 mv autumn.csv winter.csv ..
 ```
 
-moves the files `autumn.csv` and `winter.csv` from the current working directory
-up one level to its parent directory
-(because `..` always refers to the directory above your current location).
+déplace les fichiers `autumn.csv` et `winter.csv` du répertoire de travail actuel
+remonter d'un niveau vers son répertoire parent
+(car `..` fait toujours référence au répertoire situé au-dessus de votre emplacement actuel).
 
 `@instructions`
-You are in `/home/repl`, which has sub-directories `seasonal` and `backup`.
-Using a single command, move `spring.csv` and `summer.csv` from `seasonal` to `backup`.
+Vous êtes dans le répertoire `/home/repl`, qui contient les sous-répertoires `seasonal` et `backup`.
+En utilisant une seule commande, déplacez `spring.csv` et `summer.csv` de `seasonal` à `backup`.
 
 `@hint`
 
@@ -613,20 +607,20 @@ mv seasonal/spring.csv seasonal/summer.csv backup
 
 `@sct`
 ```{python}
-backup_patt="The file `%s` is not in the `backup` directory. Have you used `mv` correctly? Use two filenames and a directory as parameters to `mv`."
-seasonal_patt="The file `%s` is still in the `seasonal` directory. Make sure to move the files with `mv` rather than copying them with `cp`!"
+backup_patt="Le fichier `%s` n'est pas dans le répertoire `backup`. Avez-vous utilisé `mv` correctement ? Utilisez deux noms de fichiers et un répertoire comme paramètres pour `mv`."
+seasonal_patt="Le fichier `%s` est toujours dans le répertoire `seasonal`. Assurez-vous de déplacer les fichiers avec `mv` plutôt que de les copier avec `cp` !"
 Ex().multi(
     check_file('/home/repl/backup/spring.csv', missing_msg=backup_patt%'spring.csv'),
     check_file('/home/repl/backup/summer.csv', missing_msg=backup_patt%'summer.csv'),
     check_not(check_file('/home/repl/seasonal/spring.csv'), incorrect_msg=seasonal_patt%'spring.csv'),
     check_not(check_file('/home/repl/seasonal/summer.csv'), incorrect_msg=seasonal_patt%'summer.csv')
 )
-Ex().success_msg("Well done, let's keep this shell train going!")
+Ex().success_msg("Bien joué, continuons sur cette lancée avec le shell !")
 ```
 
 ---
 
-## How can I rename files?
+## Comment renommer des fichiers ?
 
 ```yaml
 type: BulletConsoleExercise
@@ -634,23 +628,23 @@ key: 001801a652
 xp: 100
 ```
 
-`mv` can also be used to rename files. If you run:
+`mv` peut également être utilisé pour renommer des fichiers. Si vous courez :
 
 ```{shell}
 mv course.txt old-course.txt
 ```
 
-then the file `course.txt` in the current working directory is "moved" to the file `old-course.txt`.
-This is different from the way file browsers work,
-but is often handy.
+le fichier `course.txt` du répertoire de travail actuel est "déplacé" vers le fichier `old-course.txt`.
+Ce fonctionnement est différent de celui des navigateurs de fichiers,
+mais elle est souvent pratique.
 
-One warning:
-just like `cp`,
-`mv` will overwrite existing files.
-If,
-for example,
-you already have a file called `old-course.txt`,
-then the command shown above will replace it with whatever is in `course.txt`.
+Un avertissement :
+tout comme `cp`,
+`mv` écrasera les fichiers existants.
+Si,
+par exemple,
+vous avez déjà un fichier appelé `old-course.txt`,
+alors la commande ci-dessus le remplacera par ce qui se trouve dans `course.txt`.
 
 `@pre_exercise_code`
 ```{python}
@@ -666,10 +660,10 @@ xp: 35
 ```
 
 `@instructions`
-Go into the `seasonal` directory.
+Allez dans le répertoire `seasonal`.
 
 `@hint`
-Remember that `cd` stands for "change directory" and that relative paths do not start with a leading '/'.
+N'oubliez pas que `cd` signifie "changer de répertoire" et que les chemins relatifs ne commencent pas par un "/".
 
 `@solution`
 ```{shell}
@@ -681,9 +675,8 @@ cd seasonal
 ```{python}
 Ex().check_correct(
   has_cwd('/home/repl/seasonal'),
-  has_code('cd +seasonal', incorrect_msg="If your current working directory (find out with `pwd`) is `/home/repl`, you can move to the `seasonal` folder with `cd seasonal`.")
+  has_code('cd +seasonal', incorrect_msg="Si votre répertoire de travail actuel (vérifiez avec `pwd`) est `/home/repl`, vous pouvez vous déplacer vers le dossier `seasonal` avec `cd seasonal`.")
 )
-
 ```
 
 ***
@@ -695,10 +688,10 @@ xp: 35
 ```
 
 `@instructions`
-Rename the file `winter.csv` to be `winter.csv.bck`.
+Renommez le fichier `winter.csv` en `winter.csv.bck`.
 
 `@hint`
-Use `mv` with the current name of the file and the name you want it to have in that order.
+Utilisez `mv` avec le nom actuel du fichier et le nom que vous souhaitez lui donner dans cet ordre.
 
 `@solution`
 ```{shell}
@@ -708,15 +701,14 @@ mv winter.csv winter.csv.bck
 
 `@sct`
 ```{python}
-hint = " Use `mv` with two arguments: the file you want to rename (`winter.csv`) and the new name for the file (`winter.csv.bck`)."
+hint = " Utilisez `mv` avec deux arguments : le fichier que vous souhaitez renommer (`winter.csv`) et le nouveau nom pour le fichier (`winter.csv.bck`)."
 Ex().multi(
     has_cwd('/home/repl/seasonal'),
     multi(
-        check_file('/home/repl/seasonal/winter.csv.bck', missing_msg="We expected to find `winter.csv.bck` in the directory." + hint),
-        check_not(check_file('/home/repl/seasonal/winter.csv'), incorrect_msg="We were no longer expecting `winter.csv` to be in the directory." + hint)
+        check_file('/home/repl/seasonal/winter.csv.bck', missing_msg="Nous nous attendions à trouver `winter.csv.bck` dans le répertoire." + hint),
+        check_not(check_file('/home/repl/seasonal/winter.csv'), incorrect_msg="Nous ne nous attendions plus à ce que `winter.csv` soit dans le répertoire." + hint)
     )
 )
-
 ```
 
 ***
@@ -728,10 +720,10 @@ xp: 30
 ```
 
 `@instructions`
-Run `ls` to check that everything has worked.
+Lancez le site `ls` pour vérifier que tout a fonctionné.
 
 `@hint`
-Remember to press "enter" or "return" to run the command.
+N'oubliez pas d'appuyer sur "enter" ou "return" pour exécuter la commande.
 
 `@solution`
 ```{shell}
@@ -743,22 +735,21 @@ ls
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/seasonal'),
-    has_expr_output(incorrect_msg="Have you used `ls` to list the contents of your current working directory?")
+    has_expr_output(incorrect_msg="Avez-vous utilisé `ls` pour lister le contenu de votre répertoire de travail actuel ?")
 )
 Ex().multi(
     has_cwd("/home/repl/seasonal"),
     check_correct(
       has_expr_output(strict=True),
-      has_code("ls", incorrect_msg = "Your command didn't generate the correct file listing. Use `ls` without arguments to list the contents of your current working directory.")
+      has_code("ls", incorrect_msg = "Votre commande n'a pas généré la liste de fichiers correcte. Utilisez `ls` sans arguments pour lister le contenu de votre répertoire de travail actuel.")
     )
 )
-Ex().success_msg("Copying, moving, renaming, you've all got it figured out! Next up: deleting files.")
-
+Ex().success_msg("Copier, déplacer, renommer, vous avez tout compris ! Ensuite : supprimer des fichiers.")
 ```
 
 ---
 
-## How can I delete files?
+## Comment supprimer des fichiers ?
 
 ```yaml
 type: BulletConsoleExercise
@@ -766,25 +757,25 @@ key: '2734680614'
 xp: 100
 ```
 
-We can copy files and move them around;
-to delete them,
-we use `rm`,
-which stands for "remove".
-As with `cp` and `mv`,
-you can give `rm` the names of as many files as you'd like, so:
+Nous pouvons copier des fichiers et les déplacer ;
+pour les supprimer,
+Nous utilisons `rm`,
+qui signifie "supprimer".
+Comme pour `cp` et `mv`,
+vous pouvez donner à `rm` les noms d'autant de fichiers que vous le souhaitez :
 
 ```{shell}
 rm thesis.txt backup/thesis-2017-08.txt
 ```
 
-removes both `thesis.txt` and `backup/thesis-2017-08.txt`
+supprime à la fois `thesis.txt` et `backup/thesis-2017-08.txt`
 
-`rm` does exactly what its name says,
-and it does it right away:
-unlike graphical file browsers,
-the shell doesn't have a trash can,
-so when you type the command above,
-your thesis is gone for good.
+`rm` fait exactement ce que son nom indique,
+et il le fait immédiatement :
+contrairement aux navigateurs de fichiers graphiques,
+le shell n'a pas de poubelle,
+Ainsi, lorsque vous tapez la commande ci-dessus,
+votre thèse a disparu pour de bon.
 
 `@pre_exercise_code`
 ```{python}
@@ -800,11 +791,11 @@ xp: 25
 ```
 
 `@instructions`
-You are in `/home/repl`.
-Go into the `seasonal` directory.
+Vous êtes sur `/home/repl`.
+Allez dans le répertoire `seasonal`.
 
 `@hint`
-Remember that `cd` stands for "change directory" and that a relative path does not start with a leading '/'.
+N'oubliez pas que `cd` signifie "changer de répertoire" et qu'un chemin relatif ne commence pas par un "/".
 
 `@solution`
 ```{shell}
@@ -815,7 +806,6 @@ cd seasonal
 `@sct`
 ```{python}
 Ex().has_cwd('/home/repl/seasonal')
-
 ```
 
 ***
@@ -827,10 +817,10 @@ xp: 25
 ```
 
 `@instructions`
-Remove `autumn.csv`.
+Retirez `autumn.csv`.
 
 `@hint`
-Remember that `rm` stands for "remove".
+N'oubliez pas que `rm` est l'abréviation de "remove" (supprimer).
 
 `@solution`
 ```{shell}
@@ -842,10 +832,9 @@ rm autumn.csv
 ```{python}
 Ex().multi(
     has_cwd('/home/repl/seasonal'),
-    check_not(check_file('/home/repl/seasonal/autumn.csv'), incorrect_msg="We weren't expecting `autumn.csv` to still be in the `seasonal` directory. Use `rm` with the path to the file you want to remove."),
-    has_code('rm', incorrect_msg = 'Use `rm` to remove the file, rather than moving it.')
+    check_not(check_file('/home/repl/seasonal/autumn.csv'), incorrect_msg="Nous ne nous attendions pas à ce que `autumn.csv` soit encore dans le répertoire `seasonal`. Utilisez `rm` avec le chemin du fichier que vous souhaitez supprimer."),
+    has_code('rm', incorrect_msg = 'Utilisez `rm` pour supprimer le fichier, plutôt que de le déplacer.')
 )
-
 ```
 
 ***
@@ -857,10 +846,10 @@ xp: 25
 ```
 
 `@instructions`
-Go back to your home directory.
+Retournez dans votre répertoire personnel.
 
 `@hint`
-If you use `cd` without any paths, it takes you home.
+Si vous utilisez `cd` sans aucun chemin, il vous ramène à la maison.
 
 `@solution`
 ```{shell}
@@ -870,8 +859,7 @@ cd
 
 `@sct`
 ```{python}
-Ex().has_cwd('/home/repl', incorrect_msg="Use `cd ..` or `cd ~` to return to the home directory.")
-
+Ex().has_cwd('/home/repl', incorrect_msg="Utilisez `cd ..` ou `cd ~` pour revenir au répertoire personnel.")
 ```
 
 ***
@@ -883,10 +871,10 @@ xp: 25
 ```
 
 `@instructions`
-Remove `seasonal/summer.csv` without changing directories again.
+Supprimez `seasonal/summer.csv` sans changer à nouveau de répertoire.
 
 `@hint`
-Remember that `rm` stands for "remove".
+N'oubliez pas que `rm` est l'abréviation de "remove" (supprimer).
 
 `@solution`
 ```{shell}
@@ -898,16 +886,15 @@ rm seasonal/summer.csv
 ```{python}
 Ex().multi(
     has_cwd('/home/repl'),
-    check_not(check_file('/home/repl/seasonal/summer.csv'), incorrect_msg="We weren't expecting `summer.csv` to still be in the `seasonal` directory. Use `rm` with the path to the file you want to remove."),
-    has_code('rm', incorrect_msg = 'Use `rm` to remove the file, rather than moving it.')
+    check_not(check_file('/home/repl/seasonal/summer.csv'), incorrect_msg="Nous ne nous attendions pas à ce que `summer.csv` soit encore dans le répertoire `seasonal`. Utilisez `rm` avec le chemin vers le fichier que vous souhaitez supprimer."),
+    has_code('rm', incorrect_msg = 'Utilisez `rm` pour supprimer le fichier, plutôt que de le déplacer.')
 )
-Ex().success_msg("Impressive stuff! Off to the next one!")
-
+Ex().success_msg("Impressionnant ! Passons au suivant !")
 ```
 
 ---
 
-## How can I create and delete directories?
+## Comment puis-je créer et supprimer des répertoires ?
 
 ```yaml
 type: BulletConsoleExercise
@@ -915,23 +902,23 @@ key: 63e8fbd0c2
 xp: 100
 ```
 
-`mv` treats directories the same way it treats files:
-if you are in your home directory and run `mv seasonal by-season`,
-for example,
-`mv` changes the name of the `seasonal` directory to `by-season`.
-However,
-`rm` works differently.
+`mv` traite les répertoires de la même manière que les fichiers :
+si vous êtes dans votre répertoire personnel et que vous exécutez `mv seasonal by-season`,
+par exemple,
+`mv` change le nom du répertoire `seasonal` en `by-season`.
+Cependant,
+`rm` fonctionne différemment.
 
-If you try to `rm` a directory,
-the shell prints an error message telling you it can't do that,
-primarily to stop you from accidentally deleting an entire directory full of work.
-Instead,
-you can use a separate command called `rmdir`.
-For added safety,
-it only works when the directory is empty,
-so you must delete the files in a directory *before* you delete the directory.
-(Experienced users can use the `-r` option to `rm` to get the same effect;
-we will discuss command options in the next chapter.)
+Si vous essayez de `rm` un répertoire,
+le shell affiche un message d'erreur vous indiquant qu'il ne peut pas le faire,
+principalement pour vous éviter d'effacer accidentellement un répertoire entier de travaux.
+Au lieu de cela,
+vous pouvez utiliser une commande distincte appelée `rmdir`.
+Pour plus de sécurité,
+cela ne fonctionne que lorsque le répertoire est vide,
+vous devez donc supprimer les fichiers d'un répertoire *avant de* supprimer le répertoire.
+(Les utilisateurs expérimentés peuvent utiliser l'option `-r` pour `rm` afin d'obtenir le même effet ;
+nous aborderons les options de commande dans le chapitre suivant).
 
 `@pre_exercise_code`
 ```{python}
@@ -947,11 +934,11 @@ xp: 25
 ```
 
 `@instructions`
-Without changing directories,
-delete the file `agarwal.txt` in the `people` directory.
+Sans changer de répertoire,
+supprimez le fichier `agarwal.txt` dans le répertoire `people`.
 
 `@hint`
-Remember that `rm` stands for "remove" and that a relative path does not start with a leading '/'.
+N'oubliez pas que `rm` signifie "supprimer" et qu'un chemin relatif ne commence pas par un "/".
 
 `@solution`
 ```{shell}
@@ -963,10 +950,9 @@ rm people/agarwal.txt
 ```{python}
 Ex().multi(
     has_cwd('/home/repl'),
-    check_not(check_file('/home/repl/people/agarwal.txt'), incorrect_msg="`agarwal.txt` should no longer be in `/home/repl/people`. Have you used `rm` correctly?"),
-    has_expr_output(expr = 'ls people', output = '', incorrect_msg = 'There are still files in the `people` directory. If you simply moved `agarwal.txt`, or created new files, delete them all.')
+    check_not(check_file('/home/repl/people/agarwal.txt'), incorrect_msg="`agarwal.txt` ne devrait plus être dans `/home/repl/people`. Avez-vous utilisé `rm` correctement ?"),
+    has_expr_output(expr = 'ls people', output = '', incorrect_msg = 'Il y a encore des fichiers dans le répertoire `people`. Si vous avez simplement déplacé `agarwal.txt`, ou créé de nouveaux fichiers, supprimez-les tous.')
 )
-
 ```
 
 ***
@@ -978,11 +964,11 @@ xp: 25
 ```
 
 `@instructions`
-Now that the `people` directory is empty,
-use a single command to delete it.
+Maintenant que le répertoire `people` est vide,
+utilisez une seule commande pour le supprimer.
 
 `@hint`
-Remember that `rm` only works on files.
+N'oubliez pas que `rm` ne fonctionne que sur les fichiers.
 
 `@solution`
 ```{shell}
@@ -995,9 +981,8 @@ rmdir people
 Ex().multi(
     has_cwd('/home/repl'),
     check_not(has_dir('/home/repl/people'),
-              incorrect_msg = "The 'people' directory should no longer be in your home directory. Use `rmdir` to remove it!")
+              incorrect_msg = "Le répertoire 'people' ne devrait plus être dans votre répertoire personnel. Utilisez `rmdir` pour le supprimer !")
 )
-
 ```
 
 ***
@@ -1009,13 +994,13 @@ xp: 25
 ```
 
 `@instructions`
-Since a directory is not a file,
-you must use the command `mkdir directory_name`
-to create a new (empty) directory.
-Use this command to create a new directory called `yearly` below your home directory.
+Un répertoire n'est pas un fichier,
+vous devez utiliser la commande `mkdir directory_name`
+pour créer un nouveau répertoire (vide).
+Utilisez cette commande pour créer un nouveau répertoire appelé `yearly` sous votre répertoire personnel.
 
 `@hint`
-Run `mkdir` with the name of the directory you want to create.
+Exécutez `mkdir` avec le nom du répertoire que vous souhaitez créer.
 
 `@solution`
 ```{shell}
@@ -1027,9 +1012,8 @@ mkdir yearly
 ```{python}
 Ex().multi(
     has_cwd('/home/repl'),
-    has_dir('/home/repl/yearly', msg="There is no `yearly` directory in your home directory. Use `mkdir yearly` to make one!")
+    has_dir('/home/repl/yearly', msg="Il n'y a pas de répertoire `yearly` dans votre répertoire personnel. Utilisez `mkdir yearly` pour en créer un !")
 )
-
 ```
 
 ***
@@ -1041,12 +1025,12 @@ xp: 25
 ```
 
 `@instructions`
-Now that `yearly` exists,
-create another directory called `2017` inside it
-*without* leaving your home directory.
+Maintenant que `yearly` existe,
+créez un autre répertoire appelé `2017` à l'intérieur de celui-ci
+*sans* quitter votre répertoire personnel.
 
 `@hint`
-Use a relative path for the sub-directory you want to create.
+Utilisez un chemin relatif pour le sous-répertoire que vous souhaitez créer.
 
 `@solution`
 ```{shell}
@@ -1059,15 +1043,14 @@ mkdir yearly/2017
 Ex().multi(
     has_cwd('/home/repl'),
     has_dir('/home/repl/yearly/2017',
-            msg="Cannot find a '2017' directory in '/home/repl/yearly'. You can make this directory using the relative path `yearly/2017`.")
+            msg="Impossible de trouver un répertoire '2017' dans '/home/repl/yearly'. Vous pouvez créer ce répertoire en utilisant le chemin relatif `yearly/2017`.")
 )
-Ex().success_msg("Cool! Let's wrap up this chapter with an exercise that repeats some of its concepts!")
-
+Ex().success_msg("Cool ! Terminons ce chapitre avec un exercice qui répète certains de ses concepts !")
 ```
 
 ---
 
-## Wrapping up
+## Conclusion
 
 ```yaml
 type: BulletConsoleExercise
@@ -1075,13 +1058,13 @@ key: b1990e9a42
 xp: 100
 ```
 
-You will often create intermediate files when analyzing data.
-Rather than storing them in your home directory,
-you can put them in `/tmp`,
-which is where people and programs often keep files they only need briefly.
-(Note that `/tmp` is immediately below the root directory `/`,
-*not* below your home directory.)
-This wrap-up exercise will show you how to do that.
+Vous créerez souvent des fichiers intermédiaires lors de l'analyse des données.
+Plutôt que de les stocker dans votre répertoire personnel,
+vous pouvez les mettre dans `/tmp`,
+qui est l'endroit où les personnes et les programmes conservent souvent les fichiers dont ils n'ont besoin que brièvement.
+(Notez que `/tmp` se trouve immédiatement sous le répertoire racine `/`,
+*pas* en dessous de votre répertoire personnel).
+Cet exercice de synthèse vous montrera comment procéder.
 
 `@pre_exercise_code`
 ```{python}
@@ -1097,10 +1080,10 @@ xp: 25
 ```
 
 `@instructions`
-Use `cd` to go into `/tmp`.
+Utilisez `cd` pour accéder à `/tmp`.
 
 `@hint`
-Remember that `cd` stands for "change directory" and that an absolute path starts with a '/'.
+N'oubliez pas que `cd` signifie "changer de répertoire" et qu'un chemin absolu commence par un "/".
 
 `@solution`
 ```{shell}
@@ -1112,9 +1095,8 @@ cd /tmp
 ```{python}
 Ex().check_correct(
   has_cwd('/tmp'),
-  has_code('cd +/tmp', incorrect_msg = 'You are in the wrong directory. Use `cd` to change directory to `/tmp`.')
+  has_code('cd +/tmp', incorrect_msg = 'Vous êtes dans le mauvais répertoire. Utilisez `cd` pour changer de répertoire vers `/tmp`.')
 )
-
 ```
 
 ***
@@ -1126,10 +1108,10 @@ xp: 25
 ```
 
 `@instructions`
-List the contents of `/tmp` *without* typing a directory name.
+Lister le contenu de `/tmp` *sans* taper le nom d'un répertoire.
 
 `@hint`
-If you don't tell `ls` what to list, it shows you what's in your current directory.
+Si vous ne dites pas à `ls` ce qu'il doit lister, il vous montrera ce qui se trouve dans votre répertoire actuel.
 
 `@solution`
 ```{shell}
@@ -1141,13 +1123,12 @@ ls
 ```{python}
 Ex().multi(
     has_cwd("/tmp"),
-    has_code("ls", incorrect_msg = "You didn't call `ls` to generate the file listing."),
+    has_code("ls", incorrect_msg = "Vous n'avez pas appelé `ls` pour générer la liste des fichiers."),
     check_correct(
       has_expr_output(strict=True),
-      has_code("^\s*ls\s*$", incorrect_msg = "Your command didn't generate the correct file listing. Use `ls` without`.")
+      has_code("^\s*ls\s*$", incorrect_msg = "Votre commande n'a pas généré la liste correcte des fichiers. Utilisez `ls` sans argument.")
     )
 )
-
 ```
 
 ***
@@ -1159,10 +1140,10 @@ xp: 25
 ```
 
 `@instructions`
-Make a new directory inside `/tmp` called `scratch`.
+Créez un nouveau répertoire à l'intérieur de `/tmp` appelé `scratch`.
 
 `@hint`
-Use `mkdir` to make directories.
+Utilisez `mkdir` pour créer des répertoires.
 
 `@solution`
 ```{shell}
@@ -1176,10 +1157,9 @@ Ex().multi(
     has_cwd('/tmp'),
     check_correct(
       has_dir('/tmp/scratch'),
-      has_code('mkdir +scratch', incorrect_msg="Cannot find a 'scratch' directory under '/tmp'. Make sure to use `mkdir` correctly.")
+      has_code('mkdir +scratch', incorrect_msg="Impossible de trouver un répertoire 'scratch' sous '/tmp'. Assurez-vous d'utiliser `mkdir` correctement.")
     )
 )
-
 ```
 
 ***
@@ -1191,8 +1171,8 @@ xp: 25
 ```
 
 `@instructions`
-Move `/home/repl/people/agarwal.txt` into `/tmp/scratch`.
-We suggest you use the `~` shortcut for your home directory and a relative path for the second rather than the absolute path.
+Déplacez `/home/repl/people/agarwal.txt` dans `/tmp/scratch`.
+Nous vous suggérons d'utiliser le raccourci `~` pour votre répertoire personnel et un chemin relatif pour le second plutôt qu'un chemin absolu.
 
 `@hint`
 
@@ -1207,8 +1187,7 @@ mv ~/people/agarwal.txt scratch
 ```{python}
 Ex().multi(
     has_cwd('/tmp'),
-    check_file('/tmp/scratch/agarwal.txt', missing_msg="Cannot find 'agarwal.txt' in '/tmp/scratch'. Use `mv` with `~/people/agarwal.txt` as the first parameter and `scratch` as the second.")
+    check_file('/tmp/scratch/agarwal.txt', missing_msg="Impossible de trouver 'agarwal.txt' dans '/tmp/scratch'. Utilisez `mv` avec `~/people/agarwal.txt` comme premier paramètre et `scratch` comme second.")
 )
-Ex().success_msg("This concludes Chapter 1 of Introduction to Shell! Rush over to the next chapter to learn more about manipulating data!")
-
+Ex().success_msg("Cela conclut le Chapitre 1 de l'Introduction au Shell ! Passez au chapitre suivant pour en savoir plus sur la manipulation des données !")
 ```
